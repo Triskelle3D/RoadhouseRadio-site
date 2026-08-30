@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Roadhouse Radio — Design System / Phase 0</title>
+<meta name="robots" content="noindex">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;900&family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/components.css">
+
+<style>
+  /* Style-guide-only presentation chrome — not part of the shipped design system */
+  .sg-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-4);
+    flex-wrap: wrap;
+  }
+  .sg-header p { color: var(--color-muted-foreground); }
+
+  .theme-switch {
+    display: inline-flex;
+    border: var(--border-width) solid var(--color-border);
+    border-radius: var(--radius-full);
+    padding: var(--space-1);
+    gap: var(--space-1);
+  }
+  .theme-switch button {
+    min-height: 36px;
+    padding: var(--space-2) var(--space-4);
+    border: none;
+    border-radius: var(--radius-full);
+    background: transparent;
+    color: var(--color-muted-foreground);
+    font-size: var(--text-sm);
+    font-weight: var(--weight-medium);
+    cursor: pointer;
+  }
+  .theme-switch button[aria-pressed="true"] {
+    background: var(--color-primary);
+    color: var(--color-primary-foreground);
+  }
+
+  .sg-nav {
+    position: sticky;
+    top: 0;
+    z-index: var(--z-nav);
+    display: flex;
+    gap: var(--space-5);
+    overflow-x: auto;
+    padding: var(--space-3) var(--section-padding-x);
+    background: color-mix(in srgb, var(--color-background) 92%, transparent);
+    backdrop-filter: blur(8px);
+    border-bottom: var(--border-width) solid var(--color-border);
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    letter-spacing: var(--tracking-wider);
+    text-transform: uppercase;
+  }
+  .sg-nav a { color: var(--color-muted-foreground); text-decoration: none; white-space: nowrap; }
+  .sg-nav a:hover { color: var(--color-accent); }
+
+  .swatch-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: var(--space-4);
+  }
+  .swatch {
+    border: var(--border-width) solid var(--color-border);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+  }
+  .swatch__fill {
+    height: 72px;
+    display: flex;
+    align-items: flex-end;
+    padding: var(--space-2);
+  }
+  .swatch__meta {
+    padding: var(--space-3);
+    background: var(--color-card);
+  }
+  .swatch__meta .name { display: block; font-weight: var(--weight-semibold); font-size: var(--text-sm); }
+  .swatch__meta .hex { font-family: var(--font-mono); font-size: var(--text-xs); color: var(--color-muted-foreground); }
+
+  .type-row {
+    display: flex;
+    align-items: baseline;
+    gap: var(--space-5);
+    padding-block: var(--space-4);
+    border-bottom: var(--border-width) solid var(--color-border);
+    flex-wrap: wrap;
+  }
+  .type-row .label {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--color-muted-foreground);
+    width: 8rem;
+    flex-shrink: 0;
+  }
+
+  .space-row { display: flex; align-items: center; gap: var(--space-4); padding-block: var(--space-2); }
+  .space-row .bar { background: var(--color-accent); height: 16px; border-radius: var(--radius-sm); }
+  .space-row .label { font-family: var(--font-mono); font-size: var(--text-xs); color: var(--color-muted-foreground); width: 6rem; }
+
+  .demo-grid { display: grid; gap: var(--space-5); grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+  .btn-row { display: flex; flex-wrap: wrap; gap: var(--space-3); align-items: center; }
+  .voice-block { border: var(--border-width) dashed var(--color-border); border-radius: var(--radius-lg); padding: var(--space-6); }
+  .voice-block h3 { margin-bottom: var(--space-4); }
+
+  .section-title-row { display: flex; align-items: baseline; justify-content: space-between; gap: var(--space-4); margin-bottom: var(--space-6); flex-wrap: wrap; }
+  .section-title-row .num { font-family: var(--font-mono); color: var(--color-accent); font-size: var(--text-sm); }
+</style>
+</head>
+<body>
+
+<a href="#main" class="skip-link">Skip to content</a>
+
+<!-- Theme toggle — floating bottom-right -->
+<button type="button" id="theme-toggle" class="theme-toggle" aria-label="Toggle color theme" title="Toggle color theme">
+  <svg class="theme-toggle__icon theme-toggle__icon--sun" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+  <svg class="theme-toggle__icon theme-toggle__icon--moon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+</button>
+
+<nav class="sg-nav" aria-label="Style guide sections">
+  <a href="#colors">Color</a>
+  <a href="#type">Typography</a>
+  <a href="#spacing">Spacing</a>
+  <a href="#buttons">Buttons</a>
+  <a href="#nav">Navigation</a>
+  <a href="#cards">Cards</a>
+  <a href="#motion">Motion</a>
+</nav>
+
+<main id="main" class="container">
+
+  <header class="section sg-header">
+    <div>
+      <span class="card__eyebrow">Phase 0 — Design System Foundation</span>
+      <h1 style="font-size: var(--text-2xl);">Roadhouse Radio &amp; Portfolio</h1>
+      <p>Color tokens, type scale, spacing system, and base components (buttons, nav, cards) — both themes.</p>
+    </div>
+    <div class="theme-switch" role="group" aria-label="Preview theme">
+      <button type="button" id="theme-system" aria-pressed="true">Auto</button>
+      <button type="button" id="theme-light" aria-pressed="false">Light</button>
+      <button type="button" id="theme-dark" aria-pressed="false">Dark</button>
+    </div>
+  </header>
+
+  <!-- ================================================================ -->
+  <section id="colors" class="section">
+    <div class="section-title-row">
+      <h2>Color Tokens</h2>
+      <span class="num">01</span>
+    </div>
+    <p style="margin-bottom: var(--space-6); color: var(--color-muted-foreground);">
+      Light = "Weathered Parchment", Dark = "Forge &amp; Charcoal." Swap automatically on
+      <code class="text-mono">prefers-color-scheme</code>. Swatches below reflect whichever
+      theme is currently active — use the switch above to compare both.
+    </p>
+    <div class="swatch-grid">
+      <div class="swatch">
+        <div class="swatch__fill" style="background: var(--color-background); border-bottom: 1px solid var(--color-border);"></div>
+        <div class="swatch__meta"><span class="name">Background</span><span class="hex">--color-background</span></div>
+      </div>
+      <div class="swatch">
+        <div class="swatch__fill" style="background: var(--color-card);"></div>
+        <div class="swatch__meta"><span class="name">Card</span><span class="hex">--color-card</span></div>
+      </div>
+      <div class="swatch">
+        <div class="swatch__fill" style="background: var(--color-primary);"></div>
+        <div class="swatch__meta"><span class="name">Primary (Deep Blue)</span><span class="hex">--color-primary</span></div>
+      </div>
+      <div class="swatch">
+        <div class="swatch__fill" style="background: var(--color-secondary);"></div>
+        <div class="swatch__meta"><span class="name">Secondary (Forest Green)</span><span class="hex">--color-secondary</span></div>
+      </div>
+      <div class="swatch">
+        <div class="swatch__fill" style="background: var(--color-accent);"></div>
+        <div class="swatch__meta"><span class="name">Accent (Copper)</span><span class="hex">--color-accent</span></div>
+      </div>
+      <div class="swatch">
+        <div class="swatch__fill" style="background: var(--color-muted);"></div>
+        <div class="swatch__meta"><span class="name">Muted</span><span class="hex">--color-muted</span></div>
+      </div>
+      <div class="swatch">
+        <div class="swatch__fill" style="background: var(--color-border);"></div>
+        <div class="swatch__meta"><span class="name">Border</span><span class="hex">--color-border</span></div>
+      </div>
+      <div class="swatch">
+        <div class="swatch__fill" style="background: var(--color-destructive);"></div>
+        <div class="swatch__meta"><span class="name">Destructive</span><span class="hex">--color-destructive</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================================ -->
+  <section id="type" class="section">
+    <div class="section-title-row">
+      <h2>Typography</h2>
+      <span class="num">02</span>
+    </div>
+
+    <div class="type-row">
+      <span class="label">wordmark</span>
+      <span style="font-family: var(--font-wordmark); font-size: var(--text-3xl);">Roadhouse Radio</span>
+    </div>
+    <div class="type-row">
+      <span class="label">display h1</span>
+      <span style="font-family: var(--font-display); font-size: var(--text-3xl); letter-spacing: var(--tracking-wide);">Festival Art &amp; Production</span>
+    </div>
+    <div class="type-row">
+      <span class="label">display h2</span>
+      <span style="font-family: var(--font-display); font-size: var(--text-2xl); letter-spacing: var(--tracking-wide);">DJ Persona &amp; Composition</span>
+    </div>
+    <div class="type-row">
+      <span class="label">HUD heading</span>
+      <span style="font-family: var(--font-hud); font-size: var(--text-xl); text-transform: uppercase; letter-spacing: var(--tracking-wider);">Now Broadcasting</span>
+    </div>
+    <div class="type-row">
+      <span class="label">body</span>
+      <span style="font-family: var(--font-body); font-size: var(--text-base);">Core member of touring festival art-teams, curating stages across multiple events.</span>
+    </div>
+    <div class="type-row">
+      <span class="label">mono / data</span>
+      <span class="text-mono" style="font-size: var(--text-sm);">STREAM: LIVE · 44.1kHz · LAT 43.9° / LON -73.1°</span>
+    </div>
+  </section>
+
+  <!-- ================================================================ -->
+  <section id="spacing" class="section">
+    <div class="section-title-row">
+      <h2>Spacing (4/8px rhythm)</h2>
+      <span class="num">03</span>
+    </div>
+    <div id="space-rows"></div>
+  </section>
+
+  <!-- ================================================================ -->
+  <section id="buttons" class="section">
+    <div class="section-title-row">
+      <h2>Buttons</h2>
+      <span class="num">04</span>
+    </div>
+    <div class="demo-grid">
+      <div class="voice-block">
+        <h3 class="text-caption" style="text-transform: uppercase; letter-spacing: var(--tracking-wider);">Main site voice</h3>
+        <div class="btn-row">
+          <button class="btn btn-primary">Enter the main site</button>
+          <button class="btn btn-secondary">View pillar</button>
+          <button class="btn btn-outline">Learn more</button>
+          <button class="btn btn-ghost">Skip</button>
+          <button class="btn btn-primary" disabled>Disabled</button>
+        </div>
+      </div>
+      <div class="voice-block voice-hud">
+        <h3 class="text-caption" style="text-transform: uppercase; letter-spacing: var(--tracking-wider);">Radio / HUD voice</h3>
+        <div class="btn-row">
+          <button class="btn btn-primary">Play stream</button>
+          <button class="btn btn-outline">Enter main site</button>
+          <button class="btn btn-ghost">Mute</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================================ -->
+  <section id="nav" class="section">
+    <div class="section-title-row">
+      <h2>Navigation</h2>
+      <span class="num">05</span>
+    </div>
+    <p class="text-caption" style="margin-bottom: var(--space-3);">Main site nav (resize below 768px to see the mobile toggle appear)</p>
+    <div style="border: 1px solid var(--color-border); border-radius: var(--radius-lg); overflow: hidden; margin-bottom: var(--space-6);">
+      <nav class="nav" style="position: static;">
+        <a href="#" class="nav__brand">Roadhouse Radio</a>
+        <ul class="nav__links">
+          <li><a href="#" aria-current="page">Festival</a></li>
+          <li><a href="#">DJ</a></li>
+          <li><a href="#">Tech</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+        <button class="nav__toggle" aria-label="Open menu" aria-expanded="false">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
+      </nav>
+    </div>
+
+    <p class="text-caption" style="margin-bottom: var(--space-3);">Radio / HUD nav</p>
+    <div class="voice-hud" style="border: 1px solid var(--color-border); border-radius: var(--radius-lg); overflow: hidden;">
+      <nav class="nav" style="position: static;">
+        <a href="#" class="nav__brand">Roadhouse Radio</a>
+        <div class="btn-row">
+          <span class="status-pill" data-live="true"><span class="status-pill__dot"></span>Live</span>
+          <button class="btn btn-outline btn-sm">Enter main site</button>
+        </div>
+      </nav>
+    </div>
+  </section>
+
+  <!-- ================================================================ -->
+  <section id="cards" class="section">
+    <div class="section-title-row">
+      <h2>Cards</h2>
+      <span class="num">06</span>
+    </div>
+    <div class="demo-grid">
+      <div class="card card--interactive">
+        <span class="card__eyebrow">Pillar 01</span>
+        <h3 class="card__title">Multi-Format Artist</h3>
+        <p class="card__body">Creative problem-solving, unique installation work, and a multi-format practice across touring festival art-teams.</p>
+      </div>
+      <div class="card card--interactive">
+        <span class="card__eyebrow">Pillar 02</span>
+        <h3 class="card__title">DJ &amp; Composition</h3>
+        <p class="card__body">Underground EDM festival sets and in-progress "sound journeys" composition work.</p>
+      </div>
+      <div class="card--hud card">
+        <span class="card__eyebrow text-mono">Signal</span>
+        <h3 class="card__title">Now Playing</h3>
+        <p class="card__body text-mono">STATION: ROADHOUSE · BITRATE: 320kbps</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================================ -->
+  <section id="motion" class="section">
+    <div class="section-title-row">
+      <h2>Motion</h2>
+      <span class="num">07</span>
+    </div>
+    <p style="color: var(--color-muted-foreground); margin-bottom: var(--space-4);">
+      Micro-interactions run 150–300ms and respect <code class="text-mono">prefers-reduced-motion</code>
+      (verify via OS accessibility settings — the tokens collapse to ~0ms automatically). Hover the cards
+      above, or the live pill in the HUD nav, to see it in effect.
+    </p>
+  </section>
+
+</main>
+
+
+  // =====================================================================
+  // Theme toggle — persist light/dark preference across pages
+  // =====================================================================
+  (function() {
+    const btn = document.getElementById('theme-toggle');
+    const root = document.documentElement;
+    const key = 'roadhouse.theme';
+    function get() { try { return localStorage.getItem(key) || 'system'; } catch { return 'system'; } }
+    function set(m) { try { localStorage.setItem(key, m); } catch {} }
+    function apply(mode) { mode === 'light' || mode === 'dark' ? root.setAttribute('data-theme', mode) : root.removeAttribute('data-theme'); }
+    function cur() { return root.getAttribute('data-theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'); }
+    function updateLabel() {
+      const m = cur(); btn.setAttribute('aria-label', m==='dark' ? 'Switch to light theme' : 'Switch to dark theme');
+      btn.setAttribute('aria-pressed', String(m==='dark'));
+    }
+    btn.addEventListener('click', () => { const n = cur()==='dark' ? 'light' : 'dark'; apply(n); set(n); updateLabel(); });
+    const init = get(); if (init==='light'||init==='dark') apply(init); updateLabel();
+  })();
+
+  // =====================================================================
+  // Stream / page-specific scripts
+  // =====================================================================
+  <script>
+  // Style-guide-only theme preview switch. Production pages ship with none
+  // of this — theme selection is prefers-color-scheme only.
+  const root = document.documentElement;
+  const buttons = {
+    system: document.getElementById('theme-system'),
+    light: document.getElementById('theme-light'),
+    dark: document.getElementById('theme-dark'),
+  };
+  function setTheme(mode) {
+    if (mode === 'system') {
+      root.removeAttribute('data-theme');
+    } else {
+      root.setAttribute('data-theme', mode);
+    }
+    Object.entries(buttons).forEach(([key, btn]) => {
+      btn.setAttribute('aria-pressed', String(key === mode));
+    });
+  }
+  // Persist to shared key used by floating toggle on all pages
+  const STORAGE = 'roadhouse.theme';
+  function persist(m) { try { localStorage.setItem(STORAGE, m); } catch {} }
+  function applyStored() {
+    try {
+      const s = localStorage.getItem(STORAGE);
+      if (s === 'light' || s === 'dark') setTheme(s); else if (s === 'system') setTheme('system');
+    } catch {}
+  }
+  // Wrap existing setTheme
+  const _orig = setTheme;
+  setTheme = function(mode) { _orig(mode); persist(mode); };
+  buttons.system.addEventListener('click', () => setTheme('system'));
+  applyStored();
+  buttons.light.addEventListener('click', () => setTheme('light'));
+  buttons.dark.addEventListener('click', () => setTheme('dark'));
+
+  // Render the spacing scale rows programmatically from the token list
+  const spaceTokens = [
+    ['space-1', '4px'], ['space-2', '8px'], ['space-3', '12px'], ['space-4', '16px'],
+    ['space-5', '24px'], ['space-6', '32px'], ['space-7', '48px'], ['space-8', '64px'],
+    ['space-9', '96px'], ['space-10', '128px'],
+  ];
+  const container = document.getElementById('space-rows');
+  spaceTokens.forEach(([token, px]) => {
+    const row = document.createElement('div');
+    row.className = 'space-row';
+    row.innerHTML = `
+      <span class="label">--${token}</span>
+      <span class="bar" style="width:${px}"></span>
+      <span class="text-caption">${px}</span>
+    `;
+    container.appendChild(row);
+  });
+
+  // Minimal mobile nav toggle demo (progressive disclosure)
+  const toggle = document.querySelector('.nav__toggle');
+  if (toggle) {
+    toggle.addEventListener('click', () => {
+      const expanded = toggle.getAttribute('aria-expanded') === 'true';
+      toggle.setAttribute('aria-expanded', String(!expanded));
+    });
+  }
+</script>
+
+</body>
+</html>

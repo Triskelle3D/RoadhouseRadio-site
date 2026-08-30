@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Roadhouse Radio — Ngahere Toa, Matt Shortis & Triskelle 3D</title>
+<meta name="description" content="Landing page for Roadhouse Radio — the artist name Ngahere Toa (DJ & composition), multi-format festival art under Matt Shortis (interactive art, LEDs, wizard staffs, web development), and Triskelle 3D (3D printing, micro-electronics, smart home).">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;900&family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/components.css">
+
+<!-- EmailJS integration for contact form -->
+<script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
+<script type="text/javascript">
+   (function(){
+      emailjs.init("ySHN_CiKI76p3Zzp-");
+   })();
+</script>
+</head>
+<body>
+
+<a href="#main" class="skip-link">Skip to content</a>
+
+<!-- Theme toggle — floating bottom-right -->
+<button type="button" id="theme-toggle" class="theme-toggle" aria-label="Toggle color theme" title="Toggle color theme">
+  <svg class="theme-toggle__icon theme-toggle__icon--sun" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+  <svg class="theme-toggle__icon theme-toggle__icon--moon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+</button>
+
+<nav class="nav" aria-label="Primary">
+  <a href="radio.html" class="nav__brand"><img src="images/roadhouseradio_logo.svg" alt="Roadhouse Radio" style="height:36px;width:auto;display:block;filter:brightness(0) invert(1) drop-shadow(0 0 0 #B5651D);transition:filter .25s ease;" onmouseover="this.style.filter='brightness(0) invert(1) drop-shadow(0 0 3px #B5651D) sepia(1) saturate(5) hue-rotate(-5deg) brightness(1.15)'" onmouseout="this.style.filter='brightness(0) invert(1) drop-shadow(0 0 0 #B5651D)'"></a>
+
+  <ul class="nav__links">
+    <li><a href="#multi-format-artist">Matt Shortis</a></li>
+    <li><a href="#ngahere-toa">Ngahere Toa</a></li>
+    <li><a href="#triskelle3d">Triskelle 3D</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+
+  <button type="button" class="nav__toggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-panel">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" focusable="false">
+      <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
+    </svg>
+  </button>
+</nav>
+
+<div class="nav__mobile-panel" id="mobile-panel" data-open="false">
+  <div class="nav__mobile-sheet" role="dialog" aria-modal="true" aria-label="Menu">
+    <button type="button" class="nav__toggle" id="mobile-close" aria-label="Close menu" style="align-self: flex-end;">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" focusable="false">
+        <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+      </svg>
+    </button>
+    <a href="#multi-format-artist">Matt Shortis</a>
+    <a href="#ngahere-toa">Ngahere Toa</a>
+    <a href="#triskelle3d">Triskelle 3D</a>
+    <a href="#contact">Contact</a>
+  </div>
+</div>
+
+<main id="main">
+
+  <!-- ================================================================ -->
+  <!-- PARALLAX + MORPHING MARK STAGE (Phase 3, reworked)                 -->
+  <!-- A fixed background: four atmosphere washes (ember / LED / forge /  -->
+  <!-- forest) crossfade and the central mark morphs stage rig → circuit  -->
+  <!-- traces → triskelle → triskelle as the user scrolls each section    -->
+  <!-- into view — the page energy (and its ground colour) shifts with     -->
+  <!-- each pillar.                                                          -->
+  <!-- ================================================================ -->
+  <div class="scroll-stage" aria-hidden="true" data-atmo="ngahere">
+    <div class="scroll-stage__layer scroll-stage__layer--back" id="layer-back"></div>
+    <div class="scroll-stage__atmo scroll-stage__atmo--ngahere" id="atmo-ngahere"></div>
+    <div class="scroll-stage__atmo scroll-stage__atmo--artist" id="atmo-artist"></div>
+    <div class="scroll-stage__atmo scroll-stage__atmo--triskelle" id="atmo-triskelle"></div>
+    <div class="scroll-stage__atmo scroll-stage__atmo--contact" id="atmo-contact"></div>
+  </div>
+
+  <div id="symbol-layer" aria-hidden="true" style="position:fixed;left:0;top:0;width:100%;height:100vh;z-index:0;pointer-events:none;overflow:hidden;">
+    <div class="scroll-stage__mark" id="morph-mark" style="position:absolute;left:50%;top:45vh;width:min(520px,95vw);opacity:0.55;transform:translate(-50%,-50%);">
+      <!-- Multi-format artist (spiral) — phase: 0–33% scroll -->
+      <div id="morph-artist" class="scroll-symbol" data-phase-start="0" data-phase-end="0.25" style="position:absolute;left:0;top:0;width:100%;height:100%;background-color:currentColor;-webkit-mask:url(images/spiral_clean.svg) center/contain no-repeat;mask:url(images/spiral_clean.svg) center/contain no-repeat;opacity:1;transform-origin:center;transform:scaleX(-1) scale(1) rotate(0deg);"></div>
+      <!-- Ngahere Toa (celtic triskele) — phase: 33–66% scroll -->
+      <div id="morph-ngahere" class="scroll-symbol" data-phase-start="0.02" data-phase-end="0.55" style="position:absolute;left:0;top:0;width:100%;height:100%;background-color:currentColor;-webkit-mask:url(images/celtic_triskele_clean.svg) center/contain no-repeat;mask:url(images/celtic_triskele_clean.svg) center/contain no-repeat;opacity:0;transform-origin:center;transform:scaleX(-1) scale(0) rotate(0deg);"></div>
+      <!-- Triskelle 3D (triple spiral) — phase: 66–100% scroll -->
+      <div id="morph-triskelle" class="scroll-symbol" data-phase-start="0.40" data-phase-end="0.75" style="position:absolute;left:0;top:0;width:100%;height:100%;background-color:currentColor;-webkit-mask:url(images/Triple-Spiral-clean.svg) center/contain no-repeat;mask:url(images/Triple-Spiral-clean.svg) center/contain no-repeat;opacity:0;transform-origin:center;transform:scale(0) rotate(0deg);"></div>
+    </div>
+  </div>
+
+  <!-- Page heading for accessibility
+  <!-- Page heading for accessibility + the nav's skip target. The visible
+     hero block was removed by request; the wordmark lives here only. -->
+  <h1 class="sr-only">Roadhouse Radio — Ngahere Toa, Matt Shortis &amp; Triskelle 3D</h1>
+
+  <!-- ================================================================ -->
+  <!-- PILLAR 2 — MULTI-FORMAT ARTIST (festival art, wizard staffs in)   -->
+  <!-- ================================================================ -->
+  <section id="multi-format-artist" class="section pillar container" data-pillar="circuit">
+    <div class="pillar__head">
+      <span class="pillar__num">01</span>
+      <div>
+        <span class="pillar__eyebrow">Festival Art, Interactive Installations & Web Development</span>
+        <h2 class="pillar__title">Matt Shortis</h2>
+      </div>
+    </div>
+    <div class="pillar__row pillar__row--reverse">
+      <div class="pillar__media">
+        <div class="media-placeholder" style="aspect-ratio: 16 / 9;">
+          <img src="images/humming-hutt.jpg" alt="Matt Shortis — Festival Art & Interactive Installations" class="lightbox-image" data-full="images/humming-hutt.jpg" style="width:100%;object-fit:cover;border-radius:var(--radius-md);display:block;cursor:zoom-in;" loading="eager">
+          <span class="media-placeholder__label">Humming Hut 2026</span>
+        </div>
+      </div>
+      <div class="pillar__content">
+        <p class="pillar__lede">Festival installations and interactive art pieces built with micro-electronics, LEDs, and projection mapping — work under the name Matt Shortis.</p>
+        <p class="pillar__body">The practice is multi-format: solving creative problems live on site, leading art-teams through build weeks, and programming the DMX and lighting that runs the show around the art. Signature pieces include hand-built wizard staffs packed with LEDs and sound-reactive features — interactive art you can carry and perform with.</p>
+        <ul class="pillar__skills">
+          <li>Interactive Art</li>
+          <li>LEDs & Projection Mapping</li>
+          <li>Micro-Electronics</li>
+          <li>DMX & Stage Curation</li>
+          <li>Wizard Staffs</li>
+          <li>Web Development</li>
+        </ul>
+        <div class="pillar__cta">
+          <a href="ngahere-toa-art.html" class="btn btn-secondary">Explore the art</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================================ -->
+  <!-- PILLAR 1 — NGAHERE TOA (artist name — DJ + composition)           -->
+  <!-- ================================================================ -->
+  <section id="ngahere-toa" class="section pillar container" data-pillar="stage">
+    <div class="pillar__head">
+      <span class="pillar__num">02</span>
+      <div>
+        <span class="pillar__eyebrow">Artist & DJ — Two Modalities</span>
+        <h2 class="pillar__title">Ngahere Toa</h2>
+      </div>
+    </div>
+    <p class="pillar__lede">Ngahere Toa is the artist name — a practice that runs two ways: a DJ side and a composition side, both under the same name.</p>
+    <div class="modalities">
+
+      <div class="modality">
+        <span class="modality__eyebrow">DJ work</span>
+        <h3 class="modality__title">Festival DJ Sets</h3>
+        <p class="modality__body">Underground EDM festival sets — reading a floor and holding energy through a long set, mixing with intent rather than habit.</p>
+        <div class="modality__links">
+          <a href="ngahere-toa-dj.html" class="btn btn-secondary btn-sm">View DJ work</a>
+        </div>
+      </div>
+
+      <div class="modality">
+        <span class="modality__eyebrow">Composition work</span>
+        <h3 class="modality__title">Sound Journeys</h3>
+        <p class="modality__body">Longer-form "sound journeys" built for immersive listening rather than the dancefloor. Composition work is in active development; hear the evolving catalog on SoundCloud.</p>
+        <div class="modality__links">
+          <a href="https://soundcloud.com/ngaheretoa" class="btn btn-outline btn-sm" target="_blank" rel="noopener">SoundCloud</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================================================================ -->
+  <!-- PILLAR 3 — TRISKELLE 3D                                           -->
+  <!-- ================================================================ -->
+  <section id="triskelle3d" class="section pillar container" data-pillar="triskelle">
+    <div class="pillar__head">
+      <span class="pillar__num">03</span>
+      <div>
+        <span class="pillar__eyebrow">3D Printing, Micro-Electronics & Smart Home</span>
+        <h2 class="pillar__title">Triskelle 3D</h2>
+      </div>
+    </div>
+    <div class="pillar__row">
+      <div class="pillar__media">
+        <div class="media-placeholder">
+          <img src="images/brain-button-pad.jpg" alt="3D print & build" class="lightbox-image media-placeholder__image" data-full="images/brain-button-pad.jpg" style="width:100%;aspect-ratio:64/64;object-fit:cover;border-radius:var(--radius-md);display:block;cursor:zoom-in;">
+          <span class="media-placeholder__label">Interactive Brain Midi Controller</span>
+        </div>
+      </div>
+      <div class="pillar__content">
+        <p class="pillar__lede">The making side of the practice — turning filament, microcontrollers, and sensors into things that print, move, react, and report back.</p>
+        <p class="pillar__body">Triskelle 3D covers 3D printing, micro-electronics, and smart-home territory: printed parts and enclosures, microcontrollers wired into real builds, and Home Assistant installs that tie it all together. From one-off art hardware to practical home automation, it's the hands-on engineering that holds the whole touring practice together.</p>
+        <ul class="pillar__skills">
+          <li>3D Printing</li>
+          <li>Micro-Electronics</li>
+          <li>Microcontrollers</li>
+          <li>Smart Home / HA</li>
+          <li>Sensors & Relays</li>
+        </ul>
+        <div class="pillar__cta">
+          <a href="triskelle3d.html" class="btn btn-secondary">Explore Triskelle 3D</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================================ -->
+  <!-- CONTACT — email form (Phase 4). mailto: submission opens the      -->
+  <!-- user's mail client with the message composed. Swap for a backend  -->
+  <!-- endpoint later if preferred.                                      -->
+  <!-- ================================================================ -->
+  <section id="contact" class="section container" style="position: relative; z-index: 1; padding-block: var(--section-padding-y) var(--space-2);">
+    <div class="contact-stub">
+      <span class="card__eyebrow">Get in touch</span>
+      <h2 class="card__title" style="margin-bottom: var(--space-3);">Let's build something</h2>
+      <p class="card__body">Event management, commissioning a piece, performance bookings, or technology consultation — pick the inquiry type and the form will ask only what's relevant. Send a message and we'll take it from there.</p>
+
+      <form class="contact-form" id="contact-form">
+        <div class="contact-form__row">
+          <label for="cf-name">Name</label>
+          <input id="cf-name" name="name" type="text" required autocomplete="name" placeholder="Your name">
+        </div>
+        <div class="contact-form__row">
+          <label for="cf-email">Email</label>
+          <input id="cf-email" name="email" type="email" required autocomplete="email" placeholder="you@email.com">
+        </div>
+        <div class="contact-form__row">
+          <label for="cf-inquiry">Inquiry type</label>
+          <select id="cf-inquiry" name="inquiry" required>
+            <option value="">Select an inquiry type…</option>
+            <option value="event-management">Event management</option>
+            <option value="commission">Commission a piece</option>
+            <option value="performance">Performance booking</option>
+            <option value="tech">Technology consultation</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+
+        <!-- ============ TYPE-SPECIFIC FIELDS (progressive disclosure) ============ -->
+        <!-- Event management -->
+        <div class="contact-form__group" data-group="event-management" hidden>
+          <p class="contact-form__group-head">Event management</p>
+          <div class="contact-form__row">
+            <label for="cf-event-name">Event name</label>
+            <input id="cf-event-name" name="event_name" type="text" placeholder="e.g. Twilight Gathering">
+          </div>
+          <div class="contact-form__row">
+            <label for="cf-event-dates">Event dates</label>
+            <input id="cf-event-dates" name="event_dates" type="text" placeholder="e.g. 12–14 Mar 2027">
+          </div>
+          <div class="contact-form__row">
+            <label for="cf-event-scale">Scale / audience</label>
+            <input id="cf-event-scale" name="event_scale" type="text" placeholder="e.g. 500–1000 attendees">
+          </div>
+          <div class="contact-form__row">
+            <label for="cf-event-services">Services needed</label>
+            <textarea id="cf-event-services" name="event_services" rows="3" placeholder="Production, art curation, DMX, staffing…"></textarea>
+          </div>
+        </div>
+
+        <!-- Commission a piece -->
+        <div class="contact-form__group" data-group="commission" hidden>
+          <p class="contact-form__group-head">Commission a piece</p>
+          <div class="contact-form__row">
+            <label for="cf-piece-type">Piece type</label>
+            <input id="cf-piece-type" name="piece_type" type="text" placeholder="e.g. LED wizard staff, light installation">
+          </div>
+          <div class="contact-form__row">
+            <label for="cf-piece-timeline">Timeline</label>
+            <input id="cf-piece-timeline" name="piece_timeline" type="text" placeholder="e.g. needed by June">
+          </div>
+          <div class="contact-form__row">
+            <label for="cf-piece-location">Location</label>
+            <input id="cf-piece-location" name="piece_location" type="text" placeholder="Where will the piece live / be installed?">
+          </div>
+        </div>
+
+        <!-- Performance booking -->
+        <div class="contact-form__group" data-group="performance" hidden>
+          <p class="contact-form__group-head">Performance booking</p>
+          <div class="contact-form__row">
+            <label for="cf-perf-venue">Venue / event</label>
+            <input id="cf-perf-venue" name="perf_venue" type="text" placeholder="Venue or festival name">
+          </div>
+          <div class="contact-form__row">
+            <label for="cf-perf-date">Date</label>
+            <input id="cf-perf-date" name="perf_date" type="text" placeholder="e.g. 3 Aug 2027">
+          </div>
+          <div class="contact-form__row">
+            <label for="cf-perf-length">Set length</label>
+            <input id="cf-perf-length" name="perf_length" type="text" placeholder="e.g. 90 min">
+          </div>
+        </div>
+
+        <!-- Technology consultation -->
+        <div class="contact-form__group" data-group="tech" hidden>
+          <p class="contact-form__group-head">Technology consultation</p>
+          <div class="contact-form__row">
+            <label for="cf-tech-type">Project type</label>
+            <select id="cf-tech-type" name="tech_type">
+              <option value="3D print">3D print</option>
+              <option value="Home Assistant">Home Assistant</option>
+              <option value="IoT build">IoT build</option>
+              <option value="RF-LoRa">RF-LoRa</option>
+              <option value="Web development">Web development</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+          <div class="contact-form__row">
+            <label for="cf-tech-timeline">Timeline</label>
+            <input id="cf-tech-timeline" name="tech_timeline" type="text" placeholder="e.g. this month / flexible">
+          </div>
+        </div>
+
+        <!-- Other -->
+        <div class="contact-form__group" data-group="other" hidden>
+          <p class="contact-form__group-head">Other</p>
+          <div class="contact-form__row">
+            <label for="cf-other-topic">What's it about?</label>
+            <input id="cf-other-topic" name="other_topic" type="text" placeholder="Short subject">
+          </div>
+        </div>
+        <!-- ============ END TYPE-SPECIFIC FIELDS ============ -->
+
+        <div class="contact-form__row">
+          <label for="cf-message">Message</label>
+          <textarea id="cf-message" name="message" rows="5" required placeholder="Tell me about the project…"></textarea>
+        </div>
+        <div class="btn-row" style="justify-content:center; margin-top: var(--space-2);">
+              <button type="submit" class="btn btn-secondary" style="box-shadow: 0 4px 14px rgba(181,101,29,.35); transition: box-shadow .2s ease, transform .15s ease;">Send message</button>
+        </div>
+      </form>
+      <!-- TODO (Phase 5): swap the mailto: action for a real backend/form handler endpoint if preferred -->
+    </div>
+  </section>
+
+  <!-- ================================================================ -->
+  <!-- SOCIAL / FOLLOW                                                   -->
+  <!-- ================================================================ -->
+  <section class="section container" style="text-align:center;position:relative;z-index:2;padding-block: var(--space-2) var(--section-padding-y);">
+    <span class="pillar__eyebrow" style="justify-content:center;">Follow along</span>
+    <div class="btn-row" style="justify-content:center; margin-top: var(--space-2);">
+      <a href="https://soundcloud.com/ngaheretoa" class="btn btn-outline" target="_blank" rel="noopener" style="flex-direction:column;display:inline-flex;align-items:center;gap:6px;padding:12px 14px;"><img src="images/soundcloud.svg" alt="Soundcloud" style="height:28px;width:28px;display:block;" title="Soundcloud"><span style="font-size:11px;font-family:var(--font-body);margin-top:2px;">@ngaheretoa</span></a>
+      <a href="https://www.instagram.com/ngaheretoamusic" class="btn btn-outline" target="_blank" rel="noopener" title="Ngahere Toa — DJ & composition" style="flex-direction:column;display:inline-flex;align-items:center;gap:6px;padding:12px 14px;"><img src="images/insta.svg" alt="Insta" style="height:28px;width:28px;display:block;" title="Insta"><span style="font-size:11px;font-family:var(--font-body);margin-top:2px;">@ngaheretoamusic</span></a>
+      <a href="https://www.instagram.com/triskelle3d" class="btn btn-outline" target="_blank" rel="noopener" title="Triskelle 3D — builds & prints" style="flex-direction:column;display:inline-flex;align-items:center;gap:6px;padding:12px 14px;"><img src="images/insta.svg" alt="Insta" style="height:28px;width:28px;display:block;" title="Insta"><span style="font-size:11px;font-family:var(--font-body);margin-top:2px;">@triskelle3d</span></a>
+      <a href="https://www.instagram.com/roadhouse.radio" class="btn btn-outline" target="_blank" rel="noopener" style="flex-direction:column;display:inline-flex;align-items:center;gap:6px;padding:12px 14px;"><img src="images/insta.svg" alt="Insta" style="height:28px;width:28px;display:block;" title="Insta"><span style="font-size:11px;font-family:var(--font-body);margin-top:2px;">@roadhouse.radio</span></a>
+      <a href="https://github.com/Triskelle3D" class="btn btn-outline" target="_blank" rel="noopener" title="Triskelle 3D — open builds & code" style="flex-direction:column;display:inline-flex;align-items:center;gap:6px;padding:12px 14px;"><img src="images/github.svg" alt="Github" style="height:28px;width:28px;display:block;" title="Github"><span style="font-size:11px;font-family:var(--font-body);margin-top:2px;">Triskelle3D</span></a>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer container" style="position:relative;z-index:10;text-align:center;">
+  <p>&copy; 2026 Matt Shortis. <a href="radio.html">Radio</a> </p>
+</footer>
+
+<script>
+  (function() {
+    // Theme toggle — persist across all site pages via localStorage 'roadhouse.theme'
+    const btn = document.getElementById('theme-toggle');
+    if (btn) {
+      const root = document.documentElement; const key = 'roadhouse.theme';
+      function get() { try { return localStorage.getItem(key) || 'system'; } catch { return 'system'; } }
+      function set(m) { try { localStorage.setItem(key, m); } catch {} }
+      function apply(mode) { mode === 'light' || mode === 'dark' ? root.setAttribute('data-theme', mode) : root.removeAttribute('data-theme'); }
+      function cur() { return root.getAttribute('data-theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'); }
+      btn.addEventListener('click', () => { const n = cur()==='dark' ? 'light' : 'dark'; apply(n); set(n); });
+      const init = get(); if (init==='light'||init==='dark') apply(init);
+    }
+  })();
+
+  // Full scroll/parallax/morphing system (from reference)
+  document.addEventListener('DOMContentLoaded', function() {
+// =====================================================================
+  // Mobile nav: open/close, Escape to close, focus management, close on
+  // link click. (Same as Phase 1 behavior.)
+  // =====================================================================
+  const toggle = document.querySelector('.nav__toggle[aria-controls="mobile-panel"]');
+  const panel = document.getElementById('mobile-panel');
+  const closeBtn = document.getElementById('mobile-close');
+  const panelLinks = panel.querySelectorAll('a');
+
+  function openPanel() {
+    panel.setAttribute('data-open', 'true');
+    toggle.setAttribute('aria-expanded', 'true');
+    const firstLink = panel.querySelector('a');
+    if (firstLink) firstLink.focus();
+    document.addEventListener('keydown', onKeydown);
+  }
+  function closePanel() {
+    panel.setAttribute('data-open', 'false');
+    toggle.setAttribute('aria-expanded', 'false');
+    toggle.focus();
+    document.removeEventListener('keydown', onKeydown);
+  }
+  function onKeydown(e) { if (e.key === 'Escape') closePanel(); }
+
+  toggle.addEventListener('click', openPanel);
+  closeBtn.addEventListener('click', closePanel);
+  panel.addEventListener('click', (e) => { if (e.target === panel) closePanel(); });
+  panelLinks.forEach(link => link.addEventListener('click', closePanel));
+
+  // =====================================================================
+  // Scroll-spy: mark the nav link for the pillar currently in view with
+  // aria-current, matching the underline/accent state in components.css.
+  // =====================================================================
+  const sections = ['ngahere-toa', 'multi-format-artist', 'triskelle3d', 'contact']
+    .map(id => document.getElementById(id))
+    .filter(Boolean);
+  const deskLinks = document.querySelectorAll('.nav__links a');
+
+  if ('IntersectionObserver' in window && sections.length) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const id = entry.target.id;
+          deskLinks.forEach(link => {
+            const match = link.getAttribute('href') === `#${id}`;
+            if (match) link.setAttribute('aria-current', 'page');
+            else link.removeAttribute('aria-current');
+          });
+        }
+      });
+    }, { rootMargin: '-45% 0px -50% 0px', threshold: 0 });
+    sections.forEach(section => observer.observe(section));
+  }
+
+  // =====================================================================
+  // PARALLAX + MORPHING MARK (Phase 3, reworked)
+  // Scroll-linked: move the depth layer at a slow speed, crossfade the
+  // three atmosphere washes, and morph the central mark between stage rig
+  // → circuit traces → triskelle as each pillar section crosses the
+  // viewport center. The mark tint + atmosphere recolor together shift
+  // the page's energy per pillar.
+  // Reduced-motion: layers are static, washes crossfade (handled in CSS).
+  // =====================================================================
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const layerBack = document.getElementById('layer-back');
+  const stage = document.querySelector('.scroll-stage');
+
+  // Atmosphere washes — one per section (ember / LED / forge / forest)
+  const atmos = {
+   ngahere: document.getElementById('atmo-ngahere'),
+   artist: document.getElementById('atmo-artist'),
+   triskelle: document.getElementById('atmo-triskelle'),
+   contact: document.getElementById('atmo-contact')
+  };
+
+  // Three morph targets — each an SVG path set with identical structure
+  // (same number/order of nodes) so the browser can interpolate d values.
+
+  const docH = () => document.body.scrollHeight - window.innerHeight;
+
+  // Each section maps to its own atmosphere + mark morph. Detection is
+  // section-based (the section crossing the viewport's mid-line) rather than
+  // scroll-ratio, so any section length works and the contact section gets
+  // its own ground colour + wash.
+  const pillars = [
+     { atmo: 'artist',    morph: 'circuit',  id: 'multi-format-artist' },
+     { atmo: 'ngahere',   morph: 'stage',    id: 'ngahere-toa' },
+     { atmo: 'triskelle', morph: 'triskelle', id: 'triskelle3d' },
+     { atmo: 'contact',   morph: 'triskelle', id: 'contact' }
+    ];
+  const pillarEls = pillars
+   .map(p => ({ ...p, el: document.getElementById(p.id) }))
+   .filter(p => p.el);
+
+  function currentPillarKey() {
+  if (!pillarEls.length) return 'ngahere';
+  const mid = window.scrollY + window.innerHeight * 0.5;
+  let current = pillarEls[0];
+  for (const p of pillarEls) {
+    const top = p.el.getBoundingClientRect().top + window.scrollY;
+    if (top <= mid) current = p; // last section whose top has passed the mid-line
+   }
+  return current.atmo;
+   }
+
+  // =====================================================================
+  // SCROLL-DRIVEN SYMBOL ANIMATION
+  // Each symbol is visible across a phase window. Inside the window it
+  // grows from 0 -> 1 (during the first half) then shrinks 1 -> 0 (during
+  // the second half). Windows overlap by half a phase so the "handoff"
+  // between consecutive symbols is continuous: as one shrinks out, the
+  // next is already growing in. The first symbol starts fully visible at
+  // scrollY=0 (no grow-in for the entry symbol).
+  //
+  // Phases (sequential, with 50% overlap):
+  //   artist:     0    -> 0.33
+  //   ngahere:    0.165 -> 0.66
+  //   triskelle:  0.495 -> 1
+  // =====================================================================
+  const symbols = Array.from(document.querySelectorAll('.scroll-symbol'));
+
+  function getScrollProgress() {
+    const max = document.body.scrollHeight - window.innerHeight;
+    if (max <= 0) return 0;
+    return Math.min(1, Math.max(0, window.scrollY / max));
+  }
+
+  function easeInOut(t) {
+    return t * t * (3 - 2 * t);
+  }
+
+  function applySymbolAnimation() {
+    const p = getScrollProgress();
+    symbols.forEach(el => {
+      const start = parseFloat(el.dataset.phaseStart);
+      const end   = parseFloat(el.dataset.phaseEnd);
+      const raw = (p - start) / (end - start);
+      const isEntry = el.id === 'morph-artist';
+
+      // Outside phase — fully hidden at the "nothing" state
+      if (raw <= 0) {
+        // Before this symbol's phase. The entry symbol (artist) is
+        // visible at the very top of the page (raw ≈ 0). Show it big
+        // whenever we're near the top so it doesn't disappear when the
+        // user scrolls back to scrollY=0.
+        if (isEntry && p < 0.02) {
+          el.style.opacity = '1';
+          el.style.transform = 'scaleX(-1) scale(1) rotate(0deg)';
+        } else {
+          el.style.opacity = '0';
+          el.style.transform = (el.id === 'morph-artist' || el.id === 'morph-ngahere')
+            ? 'scaleX(-1) scale(0) rotate(0deg)'
+            : 'scale(0) rotate(0deg)';
+        }
+        return;
+      }
+      if (raw >= 1) {
+        // Past this symbol's phase — fully gone
+        el.style.opacity = '0';
+        el.style.transform = (el.id === 'morph-artist' || el.id === 'morph-ngahere')
+          ? 'scaleX(-1) scale(0) rotate(0deg)'
+          : 'scale(0) rotate(0deg)';
+        return;
+      }
+
+      // Inside phase: symbol has a grow-in half (first 50%) then a dissolve
+      // half (second 50%). At scrollY=0, the entry symbol is already fully
+      // grown (raw=0, scale=1). Later symbols grow in over their first half,
+      // then dissolve over their second half.
+      const e = easeInOut(raw);        // eased 0..1 through full phase
+
+      // For entry: starts at 1 and only shrinks. For others: 0 -> 1 -> 0.
+      let scale, op, rotFactor;
+      if (isEntry) {
+        // Dissolve only: 1 -> 0 across the phase
+        scale = 1 - e;
+        op = 1 - e;
+        rotFactor = e; // rotation builds as it dissolves
+      } else {
+        // Hold at apex (scale 1, op 1) over middle 30% of phase,
+        // grow over first 35%, dissolve over last 35%.
+        const growEnd = 0.35, holdEnd = 0.65;
+        if (e < growEnd) {
+          const t = e / growEnd;      // 0..1 over grow
+          scale = t;                    // 0 -> 1
+          op = t;
+        } else if (e < holdEnd) {
+          scale = 1;                    // hold at apex
+          op = 1;
+        } else {
+          const t = (e - holdEnd) / (1 - holdEnd); // 0..1 over dissolve
+          scale = 1 - t;                // 1 -> 0
+          op = 1 - t;
+        }
+        rotFactor = e;
+      }
+
+      el.style.opacity = String(op);
+
+      // Rotation: one full turn across the phase (0 -> 360). Mirror baseline
+      // (artist + ngahere need scaleX(-1)); negate rot for the mirrored pair
+      // so all three symbols spin the same visual direction.
+      const rot = 360 * rotFactor;
+      const baselineMirror = el.id === 'morph-artist' || el.id === 'morph-ngahere';
+      const visualRot = baselineMirror ? -rot : rot;
+      el.style.transform = baselineMirror
+        ? `scaleX(-1) scale(${scale}) rotate(${visualRot}deg)`
+        : `scale(${scale}) rotate(${rot}deg)`;
+    });
+  }
+
+  function onScroll() {
+    const y = window.scrollY;
+
+    // Parallax: back layer moves slow (0.35x)
+    if (layerBack) layerBack.style.transform = `translateY(${y * -0.35}px)`;
+
+    // Subtle drift of the mark wrapper for depth
+    const mark = document.getElementById('morph-mark');
+    if (mark) mark.style.transform = `translateX(-50%) translateY(${y * -0.08}px)`;
+
+    // Drive the symbol animation directly from scroll position
+    applySymbolAnimation();
+
+    // Atmosphere washes still track the current pillar (ground colour
+    // shifts by section — independent of the symbol animation)
+    const atmoKey = currentPillarKey();
+    Object.keys(atmos).forEach(name => {
+      if (atmos[name]) atmos[name].style.opacity = (name === atmoKey) ? '1' : '0';
+    });
+    if (stage) stage.setAttribute('data-atmo', atmoKey);
+  }
+
+  if (!reduceMotion) {
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  } else {
+    // Reduced motion: snap to the symbol whose phase window contains the
+    // current scroll position (no continuous animation, but still shows
+    // the right symbol for the section). No parallax either.
+    if (layerBack) layerBack.style.transform = 'none';
+    function applyReducedMotion() {
+      const p = getScrollProgress();
+      symbols.forEach(el => {
+        const start = parseFloat(el.dataset.phaseStart);
+        const end   = parseFloat(el.dataset.phaseEnd);
+        const inside = p >= start && p <= end;
+        el.style.opacity = inside ? '1' : '0';
+        el.style.transform = '';
+      });
+    }
+    applyReducedMotion();
+    window.addEventListener('scroll', applyReducedMotion, { passive: true });
+    // Atmosphere still tracks the section
+    const atmoKey = currentPillarKey();
+    Object.keys(atmos).forEach(name => {
+      if (atmos[name]) atmos[name].style.opacity = (name === atmoKey) ? '1' : '0';
+    });
+    if (stage) stage.setAttribute('data-atmo', atmoKey);
+  }
+
+  // Keep the stage sized to the document so fixed layers cover the page
+  function sizeStage() {
+    const stage = document.querySelector('.scroll-stage');
+    if (stage) stage.style.height = '100vh';
+  }
+  sizeStage();
+  window.addEventListener('resize', sizeStage);
+
+  // =====================================================================
+  // Contact form — progressive disclosure by inquiry type.
+  // Choosing a type reveals only the fields relevant to that request and
+  // hides the rest. All groups live in the markup; we toggle `hidden`.
+  // =====================================================================
+  const inquirySelect = document.getElementById('cf-inquiry');
+  const groups = Array.from(document.querySelectorAll('.contact-form__group'));
+
+  function showGroup(value) {
+    groups.forEach(group => {
+      const matches = group.dataset.group === value;
+      group.hidden = !matches;
+      // Keep the group's fields out of the tab order while hidden
+      if (!matches) {
+        group.querySelectorAll('input, select, textarea').forEach(el => el.setAttribute('tabindex', '-1'));
+      } else {
+        group.querySelectorAll('input, select, textarea').forEach(el => el.removeAttribute('tabindex'));
+      }
+    });
+  }
+
+    inquirySelect.addEventListener('change', () => showGroup(inquirySelect.value));
+   // Initialize: show nothing until a type is chosen
+  showGroup('');
+
+   // =====================================================================
+      // Contact form — turn a field red only AFTER the user has tried to use
+      // it (focused + blurred, or after a submit attempt). Untouched required
+      // fields stay neutral so the form doesn't look "wrong" on load.
+      // =====================================================================
+     const form = document.getElementById('contact-form');
+
+     if (form) {
+       // Mark a field "touched" when the user interacts with it, then blurs.
+       form.querySelectorAll('input, select, textarea').forEach(el => {
+         el.addEventListener('blur', () => el.classList.add('is-touched'), { once: true });
+         // Selects also count as touched as soon as one is chosen
+         if (el.tagName === 'SELECT') {
+           el.addEventListener('input', () => el.classList.add('is-touched'), { once: true });
+         }
+       });
+
+       // On submit, mark every visible field touched so the red cue can show.
+       form.addEventListener('submit', () => {
+         form.querySelectorAll('input, select, textarea').forEach(el => {
+           if (!el.closest('[hidden]')) el.classList.add('is-touched');
+         });
+       });
+
+       // EmailJS contact form submission handler
+      document.getElementById('contact-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        emailjs.sendForm('service_3m0xcbj', 'template_yttsd2a', this)
+          .then(function() {
+            alert('Message sent! We\'ll get back to you soon.');
+            this.reset();
+            document.querySelectorAll('.contact-form__group').forEach(function(group) {
+              group.setAttribute('hidden', '');
+            });
+          }, function(error) {
+            alert('Failed to send. Try again or email us directly at roadhouseradio@proton.me.');
+            console.error('EmailJS error:', error);
+          });
+      });
+    }
+  });
+</script>
+
+
+  <script>
+  // Lightbox — click any .lightbox-image to open full-screen, × to close
+  (function(){
+    const lightbox = document.createElement('div');
+    lightbox.className = 'lightbox-overlay';
+    lightbox.innerHTML = '<img id="lightbox-img" alt="Enlarged view" /><button class="lightbox-close" id="lightbox-close" aria-label="Close image">×</button>';
+    document.body.appendChild(lightbox);
+    const lbImg = lightbox.querySelector('#lightbox-img'), lbClose = lightbox.querySelector('#lightbox-close');
+    function openLightbox(src, alt){ lbImg.src = src; lbImg.alt = alt; lightbox.classList.add('active'); }
+    function closeLightbox(){ lightbox.classList.remove('active'); lbImg.src = ''; }
+    lightbox.addEventListener('click', e => { if(e.target === lightbox || e.target === lbClose) closeLightbox(); });
+    document.querySelectorAll('.lightbox-image').forEach(img => img.addEventListener('click', () => openLightbox(img.getAttribute('data-full') || img.src, img.alt)));
+    document.addEventListener('keydown', e => { if(e.key === 'Escape' && lightbox.classList.contains('active')) closeLightbox(); });
+  })();
+  </script>
+</body>
+</html>

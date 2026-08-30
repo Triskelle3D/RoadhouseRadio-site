@@ -1,0 +1,49 @@
+- generic [active] [ref=e1]:
+  - link "Skip to content" [ref=e2] [cursor=pointer]:
+    - /url: "#main"
+  - button "Switch to dark theme" [ref=e3] [cursor=pointer]
+  - navigation "Primary" [ref=e7]:
+    - link "Roadhouse" [ref=e8] [cursor=pointer]:
+      - /url: radio.html
+    - generic [ref=e9]:
+      - generic [ref=e10]: Live
+      - link "Explore" [ref=e12] [cursor=pointer]:
+        - /url: index.html
+  - main [ref=e13]:
+    - generic [ref=e14]:
+      - heading "Roadhouse Radio" [level=1] [ref=e15]
+      - generic [ref=e16]:
+        - generic [ref=e17]:
+          - generic [ref=e18]: Now Broadcasting
+          - generic [ref=e20]: 44.1 kHz
+        - generic [ref=e21]:
+          - generic [ref=e22]:
+            - button "Play stream" [ref=e23] [cursor=pointer]
+            - generic [ref=e26]: "STREAM: ROADHOUSE · LIVE"
+          - slider "Stream position (placeholder)" [ref=e27]: "0"
+          - generic [ref=e28]:
+            - generic [ref=e29]: VOL
+            - slider "Volume" [ref=e30]: "80"
+    - generic [ref=e31]:
+      - generic [ref=e32]: Live location
+      - generic [ref=e33]:
+        - generic [ref=e34]:
+          - img "New Zealand — broadcast origin near Taranaki (39.055°S / 174.075°E)" [ref=e35]
+          - paragraph [ref=e40]: Signal origin — Taranaki
+          - paragraph [ref=e41]:
+            - generic [ref=e42]: Signal origin
+            - generic [ref=e43]: 39.055°S / 174.075°E
+          - paragraph [ref=e44]:
+            - generic [ref=e45]: FM frequency
+            - generic [ref=e46]: 87.7 MHz
+          - paragraph [ref=e47]: "Always touring: Broadcasting along the road. Follow our instagram for the latest stop."
+        - generic [ref=e48]:
+          - generic [ref=e49]: Follow @Roadhouse.Radio
+          - paragraph [ref=e50]: Latest posts, sets, and builds — straight from the road.
+          - link "Open Instagram" [ref=e52] [cursor=pointer]:
+            - /url: https://www.instagram.com/Roadhouse.Radio
+  - contentinfo [ref=e53]:
+    - paragraph [ref=e54]:
+      - text: © 2026 Roadhouse Radio.
+      - link "Contact us" [ref=e55] [cursor=pointer]:
+        - /url: index.html#contact

@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ngahere toa — Festival Art (Matt Shortis) | Roadhouse Radio</title>
+<meta name="description" content="Multi-format festival art under the name Matt Shortis: interactive installations, LEDs, projection mapping, DMX-driven stages, and web development.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;900&family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/components.css">
+</head>
+<body>
+
+<a href="#main" class="skip-link">Skip to content</a>
+
+<!-- Theme toggle — floating bottom-right -->
+<button type="button" id="theme-toggle" class="theme-toggle" aria-label="Toggle color theme" title="Toggle color theme">
+  <svg class="theme-toggle__icon theme-toggle__icon--sun" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+  <svg class="theme-toggle__icon theme-toggle__icon--moon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+</button>
+
+<nav class="nav" aria-label="Primary">
+  <a href="radio.html" class="nav__brand"><img src="images/roadhouseradio_logo.svg" alt="Roadhouse Radio" style="height:36px;width:auto;display:block;filter:brightness(0) invert(1) drop-shadow(0 0 0 #B5651D);transition:filter .25s ease;" onmouseover="this.style.filter='brightness(0) invert(1) drop-shadow(0 0 3px #B5651D) sepia(1) saturate(5) hue-rotate(-5deg) brightness(1.15)'" onmouseout="this.style.filter='brightness(0) invert(1) drop-shadow(0 0 0 #B5651D)'"></a>
+
+  <ul class="nav__links">
+    <li><a href="index.html#multi-format-artist">Matt Shortis</a></li>
+    <li><a href="index.html#ngahere-toa">Ngahere Toa</a></li>
+    <li><a href="index.html#triskelle3d">Triskelle 3D</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+  </ul>
+  <button type="button" class="nav__toggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-panel">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" focusable="false">
+      <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
+    </svg>
+  </button>
+</nav>
+
+<div class="nav__mobile-panel" id="mobile-panel" data-open="false">
+  <div class="nav__mobile-sheet" role="dialog" aria-modal="true" aria-label="Menu">
+    <button type="button" class="nav__toggle" id="mobile-close" aria-label="Close menu" style="align-self: flex-end;">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" focusable="false">
+        <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+      </svg>
+    </button>
+    <a href="index.html#multi-format-artist">Matt Shortis</a>
+    <a href="index.html#ngahere-toa">Ngahere Toa</a>
+    <a href="index.html#triskelle3d">Triskelle 3D</a>
+    <a href="index.html#contact">Contact</a>
+  </div>
+</div>
+
+<main id="main">
+
+  <div class="scroll-stage" aria-hidden="true">
+    <div class="scroll-stage__layer scroll-stage__layer--back"></div>
+    <div class="scroll-stage__layer scroll-stage__layer--mid"></div>
+  </div>
+
+  <section class="detail-hero container">
+  <div style="position:relative;width:72px;height:72px;margin:0 auto;color:var(--color-accent);">
+    <div id="morph-artist" class="scroll-symbol" style="position:absolute;left:50%;top:50%;width:100%;height:100%;background-color:currentColor;-webkit-mask:url(images/spiral_clean.svg) center/contain no-repeat;mask:url(images/spiral_clean.svg) center/contain no-repeat;opacity:0.55;transform-origin:center;transform:translate(-50%,-50%) scaleX(-1);"></div>
+  </div>
+  <span class="pillar__eyebrow">Pillar 01 — Multi-Format Artist</span>
+    <h1>Art as a Tool for Consciousness</h1>
+    <p class="lede">Interactive art for live festival sites — installations, LEDs, and projection mapping, solved fresh for every stage. Also: web development — the full stack, from static sites to interactive builds.</p>
+  </section>
+
+  <section class="detail-section container">
+    <div class="detail-grid">
+      <div class="detail-item">
+        <h3 class="detail-item__title">Festival Installations</h3>
+        <img src="images/festi-install.jpg" alt="Festival installation — replace with photo" class="lightbox-image" data-full="images/placeholder-festival.jpg" style="width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:var(--radius-md);margin-bottom:var(--space-3);border:var(--border-width) solid var(--color-border);display:block;">
+        <p class="detail-item__body">Original interactive installations built for the scale and chaos of a live festival site — designed and built fresh for each event, not reused templates.</p>
+      </div>
+      <div class="detail-item">
+        <h3 class="detail-item__title">Interactive Art / Micro-Electronics</h3>
+        <img src="images/wizard-staff-brain.jpg" alt="Interactive art — replace with photo" class="lightbox-image" data-full="images/wizard-staff-brain.jpg" style="width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:var(--radius-md);margin-bottom:var(--space-3);border:var(--border-width) solid var(--color-border);display:block;">
+        <p class="detail-item__body">Pieces that respond — LED arrays, sensors, and microcontrollers that react to people and sound, turning a static object into something alive.</p>
+      </div>
+      <div class="detail-item">
+        <h3 class="detail-item__title">Projection Mapping</h3>
+        <img src="images/proj-map.jpg" alt="Projection mapping — replace with photo" class="lightbox-image" data-full="images/proj-map.jpg" style="width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:var(--radius-md);margin-bottom:var(--space-3);border:var(--border-width) solid var(--color-border);display:block;">
+        <p class="detail-item__body">Mapping light onto structures and surfaces to transform a stage or installation into a canvas. Art and lighting working as one system.</p>
+      </div>
+      <div class="detail-item">
+        <h3 class="detail-item__title">Stage Curation & DMX</h3>
+        <img src="images/proj-map-screen.jpg" alt="DMX stage — replace with photo" class="lightbox-image" data-full="images/proj-map-screen.jpg" style="width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:var(--radius-md);margin-bottom:var(--space-3);border:var(--border-width) solid var(--color-border);display:block;">
+        <p class="detail-item__body">Core member of touring festival art-teams, curating stages and programming DMX lighting. Goal-oriented, supportive crew leadership through build weeks.</p>
+      </div>
+      <div class="detail-item">
+        <h3 class="detail-item__title">Web Development</h3>
+        <p class="detail-item__body">Static sites, interactive builds, and full-stack web development — designed and built with the same care as the physical work. This site is a working example.</p>
+      </div>
+    </div>
+
+    <div class="pillar__cta" style="margin-top: 2.5rem; justify-content: center; align-items: center; text-align: center; gap: 1rem; display: flex; flex-wrap: wrap;">
+      <a href="index.html#ngahere-toa" class="btn btn-outline">Back to portfolio</a>
+      <a href="index.html#contact" class="btn btn-secondary">Book for a festival</a>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer container">
+  <p>&copy; 2026 Roadhouse Radio. <a href="radio.html">Back to the radio page</a></p>
+</footer>
+
+
+  // =====================================================================
+  // Theme toggle — persist light/dark preference across pages
+  // =====================================================================
+  (function() {
+    const btn = document.getElementById('theme-toggle');
+    const root = document.documentElement;
+    const key = 'roadhouse.theme';
+    function get() { try { return localStorage.getItem(key) || 'system'; } catch { return 'system'; } }
+    function set(m) { try { localStorage.setItem(key, m); } catch {} }
+    function apply(mode) { mode === 'light' || mode === 'dark' ? root.setAttribute('data-theme', mode) : root.removeAttribute('data-theme'); }
+    function cur() { return root.getAttribute('data-theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'); }
+    function updateLabel() {
+      const m = cur(); btn.setAttribute('aria-label', m==='dark' ? 'Switch to light theme' : 'Switch to dark theme');
+      btn.setAttribute('aria-pressed', String(m==='dark'));
+    }
+    btn.addEventListener('click', () => { const n = cur()==='dark' ? 'light' : 'dark'; apply(n); set(n); updateLabel(); });
+    const init = get(); if (init==='light'||init==='dark') apply(init); updateLabel();
+  })();
+
+  // =====================================================================
+  // Stream / page-specific scripts
+  // =====================================================================
+  <script>
+  const toggle = document.querySelector('.nav__toggle[aria-controls="mobile-panel"]');
+  const panel = document.getElementById('mobile-panel');
+  const closeBtn = document.getElementById('mobile-close');
+  const panelLinks = panel.querySelectorAll('a');
+  function openPanel() {
+    panel.setAttribute('data-open', 'true');
+    toggle.setAttribute('aria-expanded', 'true');
+    const firstLink = panel.querySelector('a');
+    if (firstLink) firstLink.focus();
+    document.addEventListener('keydown', onKeydown);
+  }
+  function closePanel() {
+    panel.setAttribute('data-open', 'false');
+    toggle.setAttribute('aria-expanded', 'false');
+    toggle.focus();
+    document.removeEventListener('keydown', onKeydown);
+  }
+  function onKeydown(e) { if (e.key === 'Escape') closePanel(); }
+  toggle.addEventListener('click', openPanel);
+  closeBtn.addEventListener('click', closePanel);
+  panel.addEventListener('click', (e) => { if (e.target === panel) closePanel(); });
+  panelLinks.forEach(link => link.addEventListener('click', closePanel));
+
+  const stage = document.querySelector('.scroll-stage');
+  if (stage) stage.style.height = document.body.scrollHeight + 'px';
+
+  // =====================================================================
+  // Lightbox — click any .lightbox-image to open full-screen, × to close
+  // =====================================================================
+  const lightbox = document.createElement('div');
+  lightbox.className = 'lightbox-overlay';
+  lightbox.innerHTML = '<img id="lightbox-img" alt="Enlarged view" /><button class="lightbox-close" id="lightbox-close" aria-label="Close image">×</button>';
+  document.body.appendChild(lightbox);
+  const lbImg = lightbox.querySelector('#lightbox-img');
+  const lbClose = lightbox.querySelector('#lightbox-close');
+  function openLightbox(src, alt) { lbImg.src = src; lbImg.alt = alt; lightbox.classList.add('active'); }
+  function closeLightbox() { lightbox.classList.remove('active'); lbImg.src = ''; }
+  lightbox.addEventListener('click', (e) => { if (e.target === lightbox || e.target === lbClose) closeLightbox(); });
+  document.querySelectorAll('.lightbox-image').forEach(img => {
+    img.addEventListener('click', () => openLightbox(img.getAttribute('data-full') || img.src, img.alt));
+  });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && lightbox.classList.contains('active')) closeLightbox(); });
+</script>
+
+</body>
+</html>

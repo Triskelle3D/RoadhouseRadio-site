@@ -1,0 +1,332 @@
+/* =========================================================================
+   ROADHOUSE RADIO & PORTFOLIO — DESIGN TOKENS
+   Phase 0: Design System Foundation
+
+   Two palettes, auto-switched by OS `prefers-color-scheme`.
+   Light  = "Weathered Parchment"
+   Dark   = "Forge & Charcoal"
+
+   All tokens are semantic (role-based), never referenced by raw hex
+   in component CSS — see css/components.css.
+   ========================================================================= */
+
+:root {
+  /* ---------------------------------------------------------------------
+     COLOR — Light Mode: "Weathered Parchment" (default / fallback)
+     --------------------------------------------------------------------- */
+  --color-background: #F2ECE1;
+  --color-foreground: #2B2320;
+
+  --color-card: #E8DFCF;
+  --color-card-foreground: #2B2320;
+
+  --color-primary: #1F3A52; /* deep blue */
+  --color-primary-foreground: #F2ECE1;
+  --color-primary-hover: #274864;
+  --color-primary-active: #182D40;
+
+  --color-secondary: #2F4A32; /* forest green */
+  --color-secondary-foreground: #F2ECE1;
+  --color-secondary-hover: #38593C;
+  --color-secondary-active: #233725;
+
+  --color-accent: #B5651D;
+  --color-accent-hover: #C77426;
+  --color-accent-active: #9C5518;
+
+  --color-muted: #D9CDB8;
+  --color-muted-foreground: #6B5F4F;
+
+  --color-border: #C4B69B;
+  --color-input-border: #C4B69B;
+
+  --color-destructive: #A3312A;
+  --color-destructive-foreground: #F2ECE1;
+
+  --color-ring: #B5651D; /* focus ring = accent, visible on both surfaces */
+
+  /* ---------------------------------------------------------------------
+     PER-PILLAR ATMOSPHERE (Phase 3 rework) — each pillar has its own
+     "energy": a distinct background glow + mark tint + pillar accent.
+     These are decorative background washes behind content (content sits
+     above at z-index 1), so text contrast is unaffected. Each pillar's
+     section already carries distinct content/icons/titles, so color is a
+     redundant cue, never the only differentiator.
+     --------------------------------------------------------------------- */
+  --atmos-ngahere: #B5651D;    /* ember / stage copper */
+  --atmos-artist: #7A3FA8;     /* LED / projection violet */
+  --atmos-triskelle: #3E6FA6;  /* forge / steel blue — clearly not black */
+  --atmos-contact: #2F5A3B;    /* forest / pine — the "let's build" ground */
+
+  /* PER-PILLAR GROUND — the page background colour for each section. Four
+    distinct, same-lightness grounds so the whole page transitions mood
+    (ember → LED-violet → steel-blue → forest) while staying smooth. */
+  --ground-1: #F3E7D6;  /* ngahere — warm ember parchment */
+  --ground-2: #EEE6F0;  /* artist  — cool violet parchment */
+  --ground-3: #E4E9EC;  /* triskelle — steel-blue parchment (not black) */
+  --ground-4: #E7EAE0;  /* contact   — forest/pine parchment */
+
+  /* Overlay / scrim for modals, mobile nav */
+  --color-scrim: rgba(43, 35, 32, 0.55);
+
+  /* Elevation shadows tuned warm (not pure black) so they sit inside the
+     parchment/forge world instead of reading as generic UI shadow */
+  --shadow-color: 30 20% 15%;
+  --shadow-sm: 0 1px 2px hsl(var(--shadow-color) / 0.08);
+  --shadow-md: 0 4px 12px hsl(var(--shadow-color) / 0.12), 0 1px 3px hsl(var(--shadow-color) / 0.08);
+  --shadow-lg: 0 12px 32px hsl(var(--shadow-color) / 0.16), 0 2px 6px hsl(var(--shadow-color) / 0.10);
+  --shadow-glow-accent: 0 0 0 1px hsl(28 68% 43% / 0.35), 0 0 16px hsl(28 68% 43% / 0.25);
+
+  /* ---------------------------------------------------------------------
+     TYPOGRAPHY
+     --------------------------------------------------------------------- */
+  --font-display: 'Cinzel', 'Times New Roman', serif;       /* main site headings */
+  --font-wordmark: var(--font-display);   /* Cinzel, weight 900 — hero/logo only */
+  --weight-wordmark: 900;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-hud: 'Space Grotesk', var(--font-body);             /* radio page headings */
+  --font-mono: 'Share Tech Mono', 'SFMono-Regular', Consolas, monospace; /* telemetry/data */
+
+  /* Fluid type scale — base 16px, ~1.25 ratio, clamped for mobile-first */
+  --text-xs: 0.75rem;                                  /* 12px — captions, legal */
+  --text-sm: 0.875rem;                                 /* 14px — helper text */
+  --text-base: 1rem;                                   /* 16px — body */
+  --text-md: 1.125rem;                                 /* 18px — lead paragraph */
+  --text-lg: clamp(1.25rem, 1.15rem + 0.5vw, 1.5rem);   /* 20–24px — h4 */
+  --text-xl: clamp(1.5rem, 1.3rem + 1vw, 2rem);         /* 24–32px — h3 */
+  --text-2xl: clamp(1.875rem, 1.5rem + 1.6vw, 2.75rem); /* 30–44px — h2 */
+  --text-3xl: clamp(2.5rem, 1.8rem + 3vw, 4rem);        /* 40–64px — h1 */
+  --text-4xl: clamp(3rem, 2rem + 4.5vw, 5.5rem);        /* 48–88px — hero wordmark */
+
+  --leading-tight: 1.15;
+  --leading-snug: 1.35;
+  --leading-normal: 1.5;
+  --leading-relaxed: 1.7;
+
+  --tracking-tight: -0.01em;
+  --tracking-normal: 0;
+  --tracking-wide: 0.04em;   /* small-caps display headings */
+  --tracking-wider: 0.12em;  /* HUD labels / eyebrows */
+
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+  --weight-bold: 700;
+
+  /* ---------------------------------------------------------------------
+     SPACING — 4/8px rhythm
+     --------------------------------------------------------------------- */
+  --space-1: 0.25rem;  /* 4px  */
+  --space-2: 0.5rem;   /* 8px  */
+  --space-3: 0.75rem;  /* 12px */
+  --space-4: 1rem;     /* 16px */
+  --space-5: 1.5rem;   /* 24px */
+  --space-6: 2rem;     /* 32px */
+  --space-7: 3rem;     /* 48px */
+  --space-8: 4rem;     /* 64px */
+  --space-9: 6rem;     /* 96px */
+  --space-10: 8rem;    /* 128px */
+
+  /* Section-level vertical rhythm (mobile-first; scale up at breakpoints) */
+  --section-padding-y: var(--space-8);
+  --section-padding-x: var(--space-4);
+  --content-max-width: 72rem; /* 1152px */
+  --prose-max-width: 38rem;   /* readable measure for long-form text */
+
+  /* ---------------------------------------------------------------------
+     RADIUS — sharp/carved on main site, handled per-surface below
+     --------------------------------------------------------------------- */
+  --radius-sm: 2px;
+  --radius-md: 4px;
+  --radius-lg: 8px;
+  --radius-full: 999px;
+
+  /* ---------------------------------------------------------------------
+     BORDERS
+     --------------------------------------------------------------------- */
+  --border-width: 1px;
+  --border-width-thick: 2px;
+
+  /* ---------------------------------------------------------------------
+     MOTION — 150–300ms, meaningful only; overridden to ~0 under
+     prefers-reduced-motion at the bottom of this file
+     --------------------------------------------------------------------- */
+  --duration-fast: 150ms;
+  --duration-base: 200ms;
+  --duration-slow: 300ms;
+  --ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-out: cubic-bezier(0, 0, 0.2, 1);
+  --ease-in: cubic-bezier(0.4, 0, 1, 1);
+
+  /* ---------------------------------------------------------------------
+     TOUCH & LAYOUT
+     --------------------------------------------------------------------- */
+  --touch-target-min: 44px;
+
+  /* ---------------------------------------------------------------------
+     Z-INDEX SCALE
+     --------------------------------------------------------------------- */
+  --z-nav: 100;
+  --z-dropdown: 200;
+  --z-overlay: 300;
+  --z-modal: 400;
+  --z-toast: 500;
+}
+
+/* ===========================================================================
+   COLOR — Dark Mode: "Forge & Charcoal"
+   Swaps automatically with the OS. No manual toggle in production; the
+   style guide below adds one purely for side-by-side review.
+   =========================================================================== */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --color-background: #15130F;
+    --color-foreground: #EDE6D9;
+
+    --color-card: #201D18;
+    --color-card-foreground: #EDE6D9;
+
+    --color-primary: #2C4A63; /* deep blue */
+    --color-primary-foreground: #F5EDE0;
+    --color-primary-hover: #355977;
+    --color-primary-active: #233B4F;
+
+    --color-secondary: #3F5F42; /* forest green */
+    --color-secondary-foreground: #EDE6D9;
+    --color-secondary-hover: #4C6E50;
+    --color-secondary-active: #2E4631;
+
+    --color-accent: #C9822E;
+    --color-accent-hover: #D6953E;
+    --color-accent-active: #B06F24;
+
+    --color-muted: #2A2620;
+    --color-muted-foreground: #A89A82;
+
+    --color-border: #3A342A;
+    --color-input-border: #3A342A;
+
+    --color-destructive: #C1443C;
+    --color-destructive-foreground: #F5EDE0;
+
+    --color-ring: #C9822E;
+
+    /* Dark-mode atmosphere variants — brighter, saturated to glow in the
+       forge. Same roles as the light block above. */
+    --atmos-ngahere: #E09A3E;    /* ember / stage copper */
+    --atmos-artist: #A46BE0;     /* LED / projection violet */
+    --atmos-triskelle: #4E8CC6;  /* forge / steel blue */
+    --atmos-contact: #4C9B62;    /* forest / pine — brighter to glow in the forge */
+
+    /* Dark-mode grounds — same roles as the light block above, but tinted
+      into near-charcoal so each pillar reads as a distinct *hue* (ember /,
+      violet / steel / forest) while staying recognisably not pure black. */
+    --ground-1: #1E160F;  /* ngahere   — warm ember charcoal */
+    --ground-2: #181020;  /* artist    — violet charcoal */
+    --ground-3: #111A24;  /* triskelle — steel-blue charcoal (clearly blue) */
+    --ground-4: #14201A;  /* contact   — forest/pine charcoal */
+
+    --color-scrim: rgba(0, 0, 0, 0.65);
+
+    --shadow-color: 0 0% 0%;
+    --shadow-sm: 0 1px 2px hsl(var(--shadow-color) / 0.4);
+    --shadow-md: 0 4px 12px hsl(var(--shadow-color) / 0.45), 0 1px 3px hsl(var(--shadow-color) / 0.35);
+    --shadow-lg: 0 12px 32px hsl(var(--shadow-color) / 0.55), 0 2px 6px hsl(var(--shadow-color) / 0.4);
+    --shadow-glow-accent: 0 0 0 1px hsl(32 63% 50% / 0.4), 0 0 20px hsl(32 63% 50% / 0.35);
+   }
+}
+
+/* Manual override hooks (style-guide.html only) — lets us preview both
+   themes side by side without waiting on OS setting changes. Production
+   pages never set these attributes; the media query above is the only
+   thing that drives theme selection on the live site. */
+[data-theme="light"] {
+  color-scheme: light;
+  --color-background: #F2ECE1;
+  --color-foreground: #2B2320;
+  --color-card: #E8DFCF;
+  --color-card-foreground: #2B2320;
+  --color-primary: #1F3A52;
+  --color-primary-foreground: #F2ECE1;
+  --color-primary-hover: #274864;
+  --color-primary-active: #182D40;
+  --color-secondary: #2F4A32; /* forest green */
+  --color-secondary-foreground: #F2ECE1;
+  --color-secondary-hover: #38593C;
+  --color-secondary-active: #233725;
+  --color-accent: #B5651D;
+  --color-accent-hover: #C77426;
+  --color-accent-active: #9C5518;
+  --color-muted: #D9CDB8;
+  --color-muted-foreground: #6B5F4F;
+  --color-border: #C4B69B;
+  --color-input-border: #C4B69B;
+  --color-destructive: #A3312A;
+  --color-destructive-foreground: #F2ECE1;
+  --color-ring: #B5651D;
+  --atmos-contact: #2F5A3B;    /* forest / pine — the "let's build" ground */
+  --ground-1: #F3E7D6;  /* ngahere — warm ember parchment */
+  --ground-2: #EEE6F0;  /* artist  — cool violet parchment */
+  --ground-3: #E4E9EC;  /* triskelle — steel-blue parchment (not black) */
+  --ground-4: #E7EAE0;  /* contact   — forest/pine parchment */
+  --color-scrim: rgba(43, 35, 32, 0.55);
+  --shadow-color: 30 20% 15%;
+  --shadow-sm: 0 1px 2px hsl(var(--shadow-color) / 0.08);
+  --shadow-md: 0 4px 12px hsl(var(--shadow-color) / 0.12), 0 1px 3px hsl(var(--shadow-color) / 0.08);
+  --shadow-lg: 0 12px 32px hsl(var(--shadow-color) / 0.16), 0 2px 6px hsl(var(--shadow-color) / 0.10);
+  --shadow-glow-accent: 0 0 0 1px hsl(28 68% 43% / 0.35), 0 0 16px hsl(28 68% 43% / 0.25);
+}
+[data-theme="dark"] {
+  color-scheme: dark;
+  --color-background: #15130F;
+  --color-foreground: #EDE6D9;
+  --color-card: #201D18;
+  --color-card-foreground: #EDE6D9;
+  --color-primary: #2C4A63;
+  --color-primary-foreground: #F5EDE0;
+  --color-primary-hover: #355977;
+  --color-primary-active: #233B4F;
+  --color-secondary: #3F5F42; /* forest green */
+  --color-secondary-foreground: #EDE6D9;
+  --color-secondary-hover: #4C6E50;
+  --color-secondary-active: #2E4631;
+  --color-accent: #C9822E;
+  --color-accent-hover: #D6953E;
+  --color-accent-active: #B06F24;
+  --color-muted: #2A2620;
+  --color-muted-foreground: #A89A82;
+  --color-border: #3A342A;
+  --color-input-border: #3A342A;
+  --color-destructive: #C1443C;
+  --color-destructive-foreground: #F5EDE0;
+  --color-ring: #C9822E;
+
+  /* Dark-mode atmosphere variants — brighter, saturated to glow in the
+     forge. Same roles as the light block above. */
+  --atmos-ngahere: #E09A3E;    /* ember / stage copper */
+  --atmos-artist: #A46BE0;     /* LED / projection violet */
+  --atmos-triskelle: #4E8CC6;  /* forge / steel blue */
+  --atmos-contact: #4C9B62;    /* forest / pine — brighter to glow in the forge */
+  --ground-1: #1E160F;  /* ngahere   — warm ember charcoal */
+  --ground-2: #181020;  /* artist    — violet charcoal */
+  --ground-3: #111A24;  /* triskelle — steel-blue charcoal (clearly blue) */
+  --ground-4: #14201A;  /* contact   — forest/pine charcoal */
+
+  --color-scrim: rgba(0, 0, 0, 0.65);
+  --shadow-color: 0 0% 0%;
+  --shadow-sm: 0 1px 2px hsl(var(--shadow-color) / 0.4);
+  --shadow-md: 0 4px 12px hsl(var(--shadow-color) / 0.45), 0 1px 3px hsl(var(--shadow-color) / 0.35);
+  --shadow-lg: 0 12px 32px hsl(var(--shadow-color) / 0.55), 0 2px 6px hsl(var(--shadow-color) / 0.4);
+  --shadow-glow-accent: 0 0 0 1px hsl(32 63% 50% / 0.4), 0 0 20px hsl(32 63% 50% / 0.35);
+}
+
+/* ===========================================================================
+   REDUCED MOTION
+   =========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --duration-fast: 0.01ms;
+    --duration-base: 0.01ms;
+    --duration-slow: 0.01ms;
+  }
+}
