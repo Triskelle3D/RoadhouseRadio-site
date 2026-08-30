@@ -33,7 +33,7 @@
 </button>
 
 <nav class="nav" aria-label="Primary">
-  <a href="index.html" class="nav__brand"><img src="images/roadhouseradio_logo.svg" alt="Roadhouse Radio" style="height:36px;width:auto;display:block;filter:brightness(0) invert(1) drop-shadow(0 0 0 #B5651D);transition:filter .25s ease;" onmouseover="this.style.filter='brightness(0) invert(1) drop-shadow(0 0 3px #B5651D) sepia(1) saturate(5) hue-rotate(-5deg) brightness(1.15)'" onmouseout="this.style.filter='brightness(0) invert(1) drop-shadow(0 0 0 #B5651D)'"></a>
+  <a href="index.html" class="nav__brand"><img src="images/roadhouseradio_logo.svg" alt="Roadhouse Radio" class="invert-on-dark" style="height:36px;width:auto;display:block;transition:filter .25s ease;" onmouseover="this.style.filter='brightness(0) invert(1) drop-shadow(0 0 3px #B5651D) sepia(1) saturate(5) hue-rotate(-5deg) brightness(1.15)'" onmouseout="this.style.filter=''"></a>
 
   <ul class="nav__links">
     <li><a href="#multi-format-artist">Matt Shortis</a></li>
@@ -75,6 +75,12 @@
   <!-- ================================================================ -->
   <div class="scroll-stage" aria-hidden="true" data-atmo="ngahere">
     <div class="scroll-stage__layer scroll-stage__layer--back" id="layer-back"></div>
+    <!-- Bottom extension: covers the contact form + social/follow-along
+         sections below the initial viewport on mobile (long pages). This keeps
+         the contact atmo bloom visible behind the bottom content. -->
+    <div class="scroll-stage__layer scroll-stage__layer--bottom" id="layer-bottom">
+      <div class="scroll-stage__atmo scroll-stage__atmo--contact--bottom" id="atmo-contact-bottom"></div>
+    </div>
     <div class="scroll-stage__atmo scroll-stage__atmo--ngahere" id="atmo-ngahere"></div>
     <div class="scroll-stage__atmo scroll-stage__atmo--artist" id="atmo-artist"></div>
     <div class="scroll-stage__atmo scroll-stage__atmo--triskelle" id="atmo-triskelle"></div>
@@ -227,9 +233,9 @@
           <label for="cf-inquiry">Inquiry type</label>
           <select id="cf-inquiry" name="inquiry" required>
             <option value="">Select an inquiry type…</option>
+            <option value="performance">Performance booking</option>
             <option value="event-management">Event management</option>
             <option value="commission">Commission a piece</option>
-            <option value="performance">Performance booking</option>
             <option value="tech">Technology consultation</option>
             <option value="other">Other</option>
           </select>
@@ -336,14 +342,15 @@
   <!-- ================================================================ -->
   <!-- SOCIAL / FOLLOW                                                   -->
   <!-- ================================================================ -->
-  <section class="section container" style="text-align:center;position:relative;z-index:2;padding-block: var(--space-2) var(--section-padding-y);">
+  <section id="social" class="section container" style="text-align:center;position:relative;z-index:2;padding-block: var(--space-2) var(--section-padding-y);">
     <span class="pillar__eyebrow" style="justify-content:center;">Follow along</span>
-    <div class="btn-row" style="justify-content:center; margin-top: var(--space-2);">
-      <a href="https://soundcloud.com/ngaheretoa" class="btn btn-outline" target="_blank" rel="noopener" style="flex-direction:column;display:inline-flex;align-items:center;gap:6px;padding:12px 14px;"><img src="images/soundcloud.svg" alt="Soundcloud" style="height:28px;width:28px;display:block;" title="Soundcloud"><span style="font-size:11px;font-family:var(--font-body);margin-top:2px;">@ngaheretoa</span></a>
-      <a href="https://www.instagram.com/ngaheretoamusic" class="btn btn-outline" target="_blank" rel="noopener" title="Ngahere Toa — DJ & composition" style="flex-direction:column;display:inline-flex;align-items:center;gap:6px;padding:12px 14px;"><img src="images/insta.svg" alt="Insta" style="height:28px;width:28px;display:block;" title="Insta"><span style="font-size:11px;font-family:var(--font-body);margin-top:2px;">@ngaheretoamusic</span></a>
-      <a href="https://www.instagram.com/triskelle3d" class="btn btn-outline" target="_blank" rel="noopener" title="Triskelle 3D — builds & prints" style="flex-direction:column;display:inline-flex;align-items:center;gap:6px;padding:12px 14px;"><img src="images/insta.svg" alt="Insta" style="height:28px;width:28px;display:block;" title="Insta"><span style="font-size:11px;font-family:var(--font-body);margin-top:2px;">@triskelle3d</span></a>
-      <a href="https://www.instagram.com/roadhouse.radio" class="btn btn-outline" target="_blank" rel="noopener" style="flex-direction:column;display:inline-flex;align-items:center;gap:6px;padding:12px 14px;"><img src="images/insta.svg" alt="Insta" style="height:28px;width:28px;display:block;" title="Insta"><span style="font-size:11px;font-family:var(--font-body);margin-top:2px;">@roadhouse.radio</span></a>
-      <a href="https://github.com/Triskelle3D" class="btn btn-outline" target="_blank" rel="noopener" title="Triskelle 3D — open builds & code" style="flex-direction:column;display:inline-flex;align-items:center;gap:6px;padding:12px 14px;"><img src="images/github.svg" alt="Github" style="height:28px;width:28px;display:block;" title="Github"><span style="font-size:11px;font-family:var(--font-body);margin-top:2px;">Triskelle3D</span></a>
+    <!-- Row 1: SoundCloud + GitHub; Row 2: the 3 Instagrams -->
+    <div class="btn-row" style="justify-content:center; margin-top: var(--space-2); flex-wrap:wrap; gap: 8px 14px;">
+      <a href="https://soundcloud.com/ngaheretoa" class="btn btn-outline" target="_blank" rel="noopener" style="flex-direction:column;display:inline-flex;align-items:center;gap:6px;padding:12px 14px; flex: 0 0 auto;"><img src="images/soundcloud.svg" alt="Soundcloud" class="invert-on-dark" style="height:28px;width:28px;display:block;" title="Soundcloud"><span style="font-size:11px;font-family:var(--font-body);margin-top:2px;">@ngaheretoa</span></a>
+      <a href="https://github.com/Triskelle3D" class="btn btn-outline" target="_blank" rel="noopener" title="Triskelle 3D — open builds & code" style="flex-direction:column;display:inline-flex;align-items:center;gap:6px;padding:12px 14px; flex: 0 0 auto;"><img src="images/github.svg" alt="Github" class="invert-on-dark" style="height:28px;width:28px;display:block;" title="Github"><span style="font-size:11px;font-family:var(--font-body);margin-top:2px;">Triskelle3D</span></a>
+      <a href="https://www.instagram.com/ngaheretoamusic" class="btn btn-outline" target="_blank" rel="noopener" title="Ngahere Toa — DJ & composition" style="flex-direction:column;display:inline-flex;align-items:center;gap:6px;padding:12px 14px; flex: 0 0 auto;"><img src="images/insta.svg" alt="Insta" class="invert-on-dark" style="height:28px;width:28px;display:block;" title="Insta"><span style="font-size:11px;font-family:var(--font-body);margin-top:2px;">@ngaheretoamusic</span></a>
+      <a href="https://www.instagram.com/triskelle3d" class="btn btn-outline" target="_blank" rel="noopener" title="Triskelle 3D — builds & prints" style="flex-direction:column;display:inline-flex;align-items:center;gap:6px;padding:12px 14px; flex: 0 0 auto;"><img src="images/insta.svg" alt="Insta" class="invert-on-dark" style="height:28px;width:28px;display:block;" title="Insta"><span style="font-size:11px;font-family:var(--font-body);margin-top:2px;">@triskelle3d</span></a>
+      <a href="https://www.instagram.com/roadhouse.radio" class="btn btn-outline" target="_blank" rel="noopener" style="flex-direction:column;display:inline-flex;align-items:center;gap:6px;padding:12px 14px; flex: 0 0 auto;"><img src="images/insta.svg" alt="Insta" class="invert-on-dark" style="height:28px;width:28px;display:block;" title="Insta"><span style="font-size:11px;font-family:var(--font-body);margin-top:2px;">@roadhouse.radio</span></a>
     </div>
   </section>
 
@@ -458,22 +465,13 @@
      { atmo: 'artist',    morph: 'circuit',  id: 'multi-format-artist' },
      { atmo: 'ngahere',   morph: 'stage',    id: 'ngahere-toa' },
      { atmo: 'triskelle', morph: 'triskelle', id: 'triskelle3d' },
-     { atmo: 'contact',   morph: 'triskelle', id: 'contact' }
+     { atmo: 'contact',   morph: 'triskelle', id: 'contact' },
+     { atmo: 'contact',   morph: 'triskelle', id: 'social' }
     ];
   const pillarEls = pillars
    .map(p => ({ ...p, el: document.getElementById(p.id) }))
    .filter(p => p.el);
 
-  function currentPillarKey() {
-  if (!pillarEls.length) return 'ngahere';
-  const mid = window.scrollY + window.innerHeight * 0.5;
-  let current = pillarEls[0];
-  for (const p of pillarEls) {
-    const top = p.el.getBoundingClientRect().top + window.scrollY;
-    if (top <= mid) current = p; // last section whose top has passed the mid-line
-   }
-  return current.atmo;
-   }
 
   // =====================================================================
   // SCROLL-DRIVEN SYMBOL ANIMATION
@@ -509,23 +507,19 @@
       const raw = (p - start) / (end - start);
       const isEntry = el.id === 'morph-artist';
 
-      // Outside phase — fully hidden at the "nothing" state
-      if (raw <= 0) {
-        // Before this symbol's phase. The entry symbol (artist) is
-        // visible at the very top of the page (raw ≈ 0). Show it big
-        // whenever we're near the top so it doesn't disappear when the
-        // user scrolls back to scrollY=0.
-        if (isEntry && p < 0.02) {
-          el.style.opacity = '1';
-          el.style.transform = 'scaleX(-1) scale(1) rotate(0deg)';
-        } else {
-          el.style.opacity = '0';
-          el.style.transform = (el.id === 'morph-artist' || el.id === 'morph-ngahere')
-            ? 'scaleX(-1) scale(0) rotate(0deg)'
-            : 'scale(0) rotate(0deg)';
-        }
+      // Outside phase — fully hidden at the "nothing" state.
+      // The entry symbol (artist) also fades out naturally via raw<=0
+      // when the user scrolls up past its phase range.
+      if (raw < 0) {
+        // Strictly before this symbol's phase window.
+        el.style.opacity = '0';
+        el.style.transform = (el.id === 'morph-artist' || el.id === 'morph-ngahere')
+          ? 'scaleX(-1) scale(0) rotate(0deg)'
+          : 'scale(0) rotate(0deg)';
         return;
       }
+      // At raw == 0, stay visible (entry symbol at page-top) — handled
+      // below by the grow/dissolve branch.
       if (raw >= 1) {
         // Past this symbol's phase — fully gone
         el.style.opacity = '0';
@@ -581,8 +575,43 @@
     });
   }
 
-  function onScroll() {
+  // rAF-throttled scroll handler.
+  // Scroll events fire faster than the device paints (and far faster than
+  // a weak mobile CPU can style 3 layers + read getBoundingClientRect).
+  // Coalescing into a single rAF per frame keeps the morph in lockstep with
+  // the user's finger and removes the "wait a screen" lag on direction
+  // change. Desktop is unchanged — a 60Hz mouse already gets one update per
+  // paint via rAF. We also bail out when scrollY / viewport haven't moved
+  // enough to actually change anything (skip the cost entirely on small
+  // jitter), and we cache pillar rects instead of re-reading them every
+  // frame.
+  let rafPending = false;
+  let lastY = -1;              // last scrollY we actually rendered
+  let lastAtmo = null;         // last atmo key we applied
+
+  function currentAtmoFromScroll() {
+    // Use getBoundingClientRect() directly each frame — no caching.
+    // Caching was the bug: on mobile the address-bar hide/show fires resize,
+    // invalidating the cache, and the fallback returned 'ngahere' regardless
+    // of where the user actually was in the page. Five getBoundingClientRect
+    // reads per scroll frame is negligible on any mobile hardware.
+    const mid = window.scrollY + window.innerHeight * 0.5;
+    let key = pillarEls[0] ? pillarEls[0].atmo : 'ngahere';
+    for (const p of pillarEls) {
+      const top = p.el.getBoundingClientRect().top + window.scrollY;
+      if (top <= mid) key = p.atmo;
+    }
+    return key;
+  }
+
+  function onScrollRaf() {
+    rafPending = false;
     const y = window.scrollY;
+    if (y === lastY) return; // nothing changed since last frame
+    lastY = y;
+
+    // Recompute docMax if it changed (images / dynamic content shifting height)
+    const max = document.body.scrollHeight - window.innerHeight;
 
     // Parallax: back layer moves slow (0.35x)
     if (layerBack) layerBack.style.transform = `translateY(${y * -0.35}px)`;
@@ -595,17 +624,34 @@
     applySymbolAnimation();
 
     // Atmosphere washes still track the current pillar (ground colour
-    // shifts by section — independent of the symbol animation)
-    const atmoKey = currentPillarKey();
-    Object.keys(atmos).forEach(name => {
-      if (atmos[name]) atmos[name].style.opacity = (name === atmoKey) ? '1' : '0';
-    });
-    if (stage) stage.setAttribute('data-atmo', atmoKey);
+    // shifts by section — independent of the symbol animation). Skip the
+    // style writes if the section didn't change.
+    const atmoKey = currentAtmoFromScroll();
+    if (atmoKey !== lastAtmo) {
+      lastAtmo = atmoKey;
+      Object.keys(atmos).forEach(name => {
+        if (atmos[name]) atmos[name].style.opacity = (name === atmoKey) ? '1' : '0';
+      });
+      if (stage) stage.setAttribute('data-atmo', atmoKey);
+    }
+    // Bottom-extension bloom for the social/follow-along section (contact atmo only)
+    const bottomBloom = document.getElementById('atmo-contact-bottom');
+    if (bottomBloom) bottomBloom.style.opacity = (atmoKey === 'contact') ? '1' : '0';
+  }
+
+  function scheduleScroll() {
+    if (rafPending) return;
+    rafPending = true;
+    requestAnimationFrame(onScrollRaf);
   }
 
   if (!reduceMotion) {
-    window.addEventListener('scroll', onScroll, { passive: true });
-    onScroll();
+    window.addEventListener('scroll', scheduleScroll, { passive: true });
+    // Prime: render the initial frame, then keep cached pillar tops in sync
+    // with the current scroll position (rects change with scroll because
+    // they are viewport-relative; we use document coords so the cache stays
+    // valid for the session's lifetime unless layout changes).
+    onScrollRaf();
   } else {
     // Reduced motion: snap to the symbol whose phase window contains the
     // current scroll position (no continuous animation, but still shows
@@ -624,17 +670,27 @@
     applyReducedMotion();
     window.addEventListener('scroll', applyReducedMotion, { passive: true });
     // Atmosphere still tracks the section
-    const atmoKey = currentPillarKey();
+    const atmoKey = currentAtmoFromScroll();
     Object.keys(atmos).forEach(name => {
       if (atmos[name]) atmos[name].style.opacity = (name === atmoKey) ? '1' : '0';
     });
     if (stage) stage.setAttribute('data-atmo', atmoKey);
   }
 
-  // Keep the stage sized to the document so fixed layers cover the page
+  // Keep the stage positioned to the viewport and covering the full document
+  // height so the fixed atmo blooms extend behind all content (including the
+  // social/follow section below the contact form). Setting top/right/bottom/left
+  // instead of inset:0 keeps it full-viewport, and the overflow is harmless
+  // because content sits above via z-index layering.
   function sizeStage() {
     const stage = document.querySelector('.scroll-stage');
-    if (stage) stage.style.height = '100vh';
+    if (stage) {
+      stage.style.top = '0';
+      stage.style.right = '0';
+      stage.style.left = '0';
+      stage.style.bottom = '0';
+      stage.style.height = '';
+    }
   }
   sizeStage();
   window.addEventListener('resize', sizeStage);

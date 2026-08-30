@@ -786,6 +786,29 @@
     radial-gradient(50% 50% at 50% 40%, color-mix(in srgb, var(--atmos-contact) 24%, transparent), transparent 74%),
     radial-gradient(32% 32% at 50% 82%, color-mix(in srgb, var(--atmos-contact) 16%, transparent), transparent 72%);
 }
+.scroll-stage__layer--bottom {
+  position: absolute;
+  top: 100vh;
+  left: 0; right: 0;
+  height: 800px;
+  pointer-events: none;
+}
+.scroll-stage__atmo--contact--bottom {
+  position: absolute; inset: 0;
+  opacity: 0;
+  transition: opacity 900ms var(--ease-standard);
+  background:
+    radial-gradient(50% 50% at 50% 30%, color-mix(in srgb, var(--atmos-contact) 24%, transparent), transparent 74%),
+    radial-gradient(32% 32% at 50% 70%, color-mix(in srgb, var(--atmos-contact) 16%, transparent), transparent 72%);
+}
+
+/* Dark-mode colour inversion: icons (logo + socials) should be white on dark,
+   and dark on light — so we only apply the invert when we're in dark mode. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .invert-on-dark { filter: invert(1); }
+}
+[data-theme="dark"] .invert-on-dark { filter: invert(1); }
+[data-theme="light"] .invert-on-dark { filter: none; }
 
 /* The morphing mark itself — centered, large, low-opacity watermark.
    Its color is per-pillar; the JS sets data-atmo on the stage and the
