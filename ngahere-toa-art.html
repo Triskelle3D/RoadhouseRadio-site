@@ -170,7 +170,7 @@
   const lbImg = lightbox.querySelector('#lightbox-img');
   const lbClose = lightbox.querySelector('#lightbox-close');
   function openLightbox(src, alt) { lbImg.src = src; lbImg.alt = alt; lightbox.classList.add('active'); history.pushState({lightbox:true}, ''); }
-  function closeLightbox() { lightbox.classList.remove('active'); lbImg.src = ''; document.body.style.overflow=''; document.body.style.touchAction=''; if(history.state && history.state.lightbox) history.back(); }
+  function closeLightbox() { lightbox.classList.remove('active'); lbImg.src = ''; document.body.style.overflow=''; document.body.style.touchAction=''; document.body.style.position=''; document.body.style.left=''; document.body.style.top=''; document.body.style.width=''; if(history.state && history.state.lightbox) history.back(); }
   lightbox.addEventListener('click', (e) => { if (e.target === lightbox || e.target === lbClose) closeLightbox(); });
   document.querySelectorAll('.lightbox-image').forEach(img => {
     img.addEventListener('click', () => openLightbox(img.getAttribute('data-full') || img.src, img.alt));
@@ -181,7 +181,7 @@
   // Mobile touch: close on overlay/background touch, prevent scroll/zoom, lock body
   lightbox.addEventListener('touchstart', e => { if(e.target === lightbox || e.target === lbClose){ e.preventDefault(); closeLightbox(); } }, {passive:false});
   lightbox.addEventListener('touchend', e => { if(e.target === lightbox || e.target === lbClose){ e.preventDefault(); } }, {passive:false});
-  document.querySelectorAll('.lightbox-image').forEach(img => img.addEventListener('click', () => { document.body.style.overflow='hidden'; document.body.style.touchAction='none'; openLightbox(img.getAttribute('data-full') || img.src, img.alt); }));
+  document.querySelectorAll('.lightbox-image').forEach(img => img.addEventListener('click', () => { document.body.style.overflow='hidden'; document.body.style.touchAction='none'; document.body.style.position='fixed'; document.body.style.left='0'; document.body.style.top='0'; document.body.style.width='100%'; openLightbox(img.getAttribute('data-full') || img.src, img.alt); }));
 </script>
 
 </body>
