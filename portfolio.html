@@ -717,10 +717,14 @@
     document.body.appendChild(lightbox);
     const lbImg = lightbox.querySelector('#lightbox-img'), lbClose = lightbox.querySelector('#lightbox-close');
     function openLightbox(src, alt){ lbImg.src = src; lbImg.alt = alt; lightbox.classList.add('active'); }
-    function closeLightbox(){ lightbox.classList.remove('active'); lbImg.src = ''; }
+    function closeLightbox(){ lightbox.classList.remove('active'); lbImg.src = ''; document.body.style.overflow=''; document.body.style.touchAction=''; }
     lightbox.addEventListener('click', e => { if(e.target === lightbox || e.target === lbClose) closeLightbox(); });
     document.querySelectorAll('.lightbox-image').forEach(img => img.addEventListener('click', () => openLightbox(img.getAttribute('data-full') || img.src, img.alt)));
     document.addEventListener('keydown', e => { if(e.key === 'Escape' && lightbox.classList.contains('active')) closeLightbox(); });
+    // Mobile touch: close on background touch, lock body scroll
+    lightbox.addEventListener('touchstart', e => { if(e.target === lightbox || e.target === lbClose){ e.preventDefault(); closeLightbox(); } }, {passive:false});
+    lightbox.addEventListener('touchend', e => { if(e.target === lightbox || e.target === lbClose){ e.preventDefault(); } }, {passive:false});
+    document.querySelectorAll('.lightbox-image').forEach(img => img.addEventListener('click', () => { document.body.style.overflow='hidden'; document.body.style.touchAction='none'; openLightbox(img.getAttribute('data-full')||img.src, img.alt); }));
   })();
   </script>
 </body>
