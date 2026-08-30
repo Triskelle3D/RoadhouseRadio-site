@@ -13,6 +13,23 @@
 <link rel="stylesheet" href="css/tokens.css">
 <link rel="stylesheet" href="css/base.css">
 <link rel="stylesheet" href="css/components.css">
+<style>
+  /* Theme-aware logo: always use CSS for correct light/dark appearance */
+  .logo--theme-aware,
+  .logo--theme-aware[src] {
+    filter: brightness(0) invert(1) drop-shadow(0 0 0 #B5651D) !important;
+  }
+  [data-theme="light"] .logo--theme-aware,
+  [data-theme="light"] .logo--theme-aware[src] {
+    filter: brightness(0) drop-shadow(0 0 0 #B5651D) !important;
+  }
+  .logo--theme-aware.logo--hover {
+    filter: brightness(0) invert(1) drop-shadow(0 0 3px #B5651D) sepia(1) saturate(5) hue-rotate(-5deg) brightness(1.15) !important;
+  }
+  [data-theme="light"] .logo--theme-aware.logo--hover {
+    filter: brightness(0) drop-shadow(0 0 3px #B5651D) sepia(1) saturate(5) hue-rotate(-5deg) brightness(1.15) !important;
+  }
+</style>
 </head>
 <body class="voice-hud">
 
@@ -30,7 +47,7 @@
 </button>
 
 <nav class="nav" aria-label="Primary">
-  <a href="index.html" class="nav__brand"><img src="images/roadhouseradio_logo.svg" alt="Roadhouse Radio" style="height:36px;width:auto;display:block;filter:brightness(0) invert(1) drop-shadow(0 0 0 #B5651D);transition:filter .25s ease;" onmouseover="this.style.filter='brightness(0) invert(1) drop-shadow(0 0 3px #B5651D) sepia(1) saturate(5) hue-rotate(-5deg) brightness(1.15)'" onmouseout="this.style.filter='brightness(0) invert(1) drop-shadow(0 0 0 #B5651D)'"></a>
+  <a href="index.html" class="nav__brand"><img id="nav-logo" src="images/roadhouseradio_logo.svg" alt="Roadhouse Radio" class="logo--theme-aware" style="height:36px;width:auto;display:block;filter:brightness(0) invert(1) drop-shadow(0 0 0 #B5651D);transition:filter .25s ease;" onmouseover="this.classList.add('logo--hover');this.style.filter='brightness(0) invert(1) drop-shadow(0 0 3px #B5651D) sepia(1) saturate(5) hue-rotate(-5deg) brightness(1.15)'" onmouseout="this.classList.remove('logo--hover');this.style.filter=''" onload="this.style.filter=''" onerror="this.style.filter=''"></a>
   <div class="btn-row" style="align-items:center;">
     <span class="status-pill status-pill--live" data-live="true"><span class="status-pill__dot"></span>Live</span>
     <a href="portfolio.html" class="btn btn-outline btn-sm">Explore</a>
@@ -48,7 +65,7 @@
   <!-- RADIO HERO — stream player console                                -->
   <!-- ================================================================ -->
   <section class="radio-hero container">
-    <img src="images/roadhouseradio_logo.svg" alt="Roadhouse Radio" style="height:100px;width:auto;display:block;margin:0 auto 0.5rem;filter:invert(1);"><h1 class="radio-hero__wordmark" style="font-size:1.4rem;letter-spacing:0.12em;">(Roadhouse Radio)</h1>
+    <img src="images/roadhouseradio_logo.svg" alt="Roadhouse Radio" class="logo--theme-aware" style="height:100px;width:auto;display:block;margin:0 auto 0.5rem;" onload="this.style.filter=''" onerror="this.style.filter=''"><h1 class="radio-hero__wordmark" style="font-size:1.4rem;letter-spacing:0.12em;">(Roadhouse Radio)</h1>
 
     <div class="radio-console">
       <div class="radio-console__readout">
